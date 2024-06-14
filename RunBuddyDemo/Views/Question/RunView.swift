@@ -1,17 +1,17 @@
 //
-//  TerrainTypeView.swift
+//  SelectionView.swift
 //  RunBuddyDemo
 //
-//  Created by Wayne Bishop on 6/7/24.
+//  Created by Wayne Bishop on 5/6/24.
 //
 
 import SwiftUI
 
-struct TerrainTypeView: View {
+struct RunView: View {
     
     @Binding var selectedOption: String
     
-    let options = ["Road", "Trail"]
+    let options = ["Easy", "Interval", "Tempo", "Threshold", "Fartlek", "Progression", "Hill Repeats", "Race"]
     
     var body: some View {
         Menu {
@@ -32,10 +32,10 @@ struct TerrainTypeView: View {
     }
 }
 
-#Preview {
-    @State var selectedOption: String = "Road"
-    return VStack {
-        TerrainTypeView(selectedOption: $selectedOption)
-    }
 
+#Preview {
+ @State var selectedOption: String = "Easy"
+    return VStack {
+        RunView(selectedOption: $selectedOption)
+    }
 }

@@ -28,7 +28,7 @@ struct ForecastView: View {
     @State var location: CLLocationCoordinate2D
     @State var targetDate = ""
     @State var name = ""
-    @State var distance = ""
+    @State var duration = ""
     @State var terrain = ""
     @State var country = ""
     
@@ -238,6 +238,6 @@ struct ForecastView: View {
     @State var targetDate = "2024-06-14"
     
     return VStack {
-        ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", distance: "3.1")
+        ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")
     }
 }

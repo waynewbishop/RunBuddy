@@ -14,7 +14,7 @@ import CoreLocation
 struct Question {
     let name: String
     let location: CLLocationCoordinate2D
-    let distance: String
+    let duration: String
     let selectedDate: Date
     let selectedOption: String
     let terrainOption: String

@@ -25,10 +25,10 @@ struct QuestionView: View {
 @AppStorage("name") private var persistedName = ""
     
 @State var name: String = ""
-@State var distance: String = ""
 @State var selectedDate = Date()
 @State var selectedOption = "Easy"
 @State var terrainOption = "Road"
+@State var durationOption = "30 minutes"
 @State var nutrition: Bool = false
 @State var kit: Bool = false
 @State var hydration: Bool = false
@@ -135,21 +135,18 @@ var longitude: String {
                     
                     GroupBox {
                         
-                        HStack {
-                            TextField("Run distance (miles)", text: $distance) {
-                            }
-                            .keyboardType(.decimalPad)
-                            .padding(.bottom, 15)
-                            .disabled(true) //TODO: this interface element does not work. Look at Strava..
+                        LabeledContent("Run Duration") {
+                            DurationView(selectedOption: $durationOption)
+                                .padding(.bottom, 20)
                         }
                         
                         LabeledContent("Type") {
-                            RunTypeView(selectedOption: $selectedOption)
+                            RunView(selectedOption: $selectedOption)
                                 .padding(.bottom, 20)
                         }
                         
                         LabeledContent("Terrain") {
-                            TerrainTypeView(selectedOption: $terrainOption)
+                            TerrainView(selectedOption: $terrainOption)
                                 .padding(.bottom, 20)
                         }
                         
@@ -214,7 +211,7 @@ var longitude: String {
                         if let region = searchRegion {
                             let location = region.center
                             
-                            let question = Question(name: name, location: location, distance: distance, selectedDate: selectedDate, selectedOption: selectedOption, terrainOption: terrainOption, nutrition: nutrition, kit: kit, hydration: hydration)
+                            let question = Question(name: name, location: location, duration: durationOption, selectedDate: selectedDate, selectedOption: selectedOption, terrainOption: terrainOption, nutrition: nutrition, kit: kit, hydration: hydration)
                             
                             AnalysisView(showModal: $showModal, question: question)
                         }

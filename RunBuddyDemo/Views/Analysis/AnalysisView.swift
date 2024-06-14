@@ -46,7 +46,7 @@ struct AnalysisView: View {
                  
                 VStack {
                     //show weather and supporting analysis
-                    ForecastView(location: question.location, targetDate: targetDate, name: question.name, distance: question.distance)
+                    ForecastView(location: question.location, targetDate: targetDate, name: question.name, duration: question.duration)
                 }
             }
         }
@@ -59,7 +59,7 @@ struct AnalysisView: View {
     @State var showModal: Bool  = false
     @State var selectedDate = Date().advanceDays(by: 0)
     
-    @State var testQuestion = Question(name: "Ballard Locks", location: .gigHarbor, distance: "3.1", selectedDate: selectedDate.advanceDays(by: 5), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var testQuestion = Question(name: "Ballard Locks", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 5), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
     
     return VStack {
         AnalysisView(showModal: $showModal, question: testQuestion)
