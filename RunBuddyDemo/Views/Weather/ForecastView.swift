@@ -50,6 +50,18 @@ struct ForecastView: View {
         return formatter.string(from: date)
     }
     
+    //present date in true date format
+    var date: Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        guard let date = formatter.date(from: targetDate) else {
+            return nil
+        }
+        
+        return date
+    }
+
     
     var body: some View {
                
@@ -210,18 +222,18 @@ struct ForecastView: View {
                         }
                     }
                     
-                    //TODO: only call the engine if the target date
-                    //is within 6 days of the current date.
+                    //check forecast range.
+                    if let chosenDate = date {
+                        if chosenDate.isWithinFiveDays(of: Date()) {
+                            
+                            //build a new prompt for weather analysis
+                            let prompt = Prompt()
+                            let revisedPrompt = prompt.weatherAnalysisPrompt(with: chartForecasts, name: name, targetDate: targetDate)
+                                                
+                            self.askRunBuddyAndGetResponse(revisedPrompt)
+                        }
+                    }
                     
-                    
-                                        
-                    //build a new prompt for weather analysis
-                    let prompt = Prompt()
-                    let revisedPrompt = prompt.weatherAnalysisPrompt(with: chartForecasts, name: name, targetDate: targetDate)
-                    
-                    //print(revisedPrompt)
-                                        
-                    self.askRunBuddyAndGetResponse(revisedPrompt)
                     
                 }
                 

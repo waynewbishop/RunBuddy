@@ -14,7 +14,7 @@ extension Date {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: self, to: date)
         let dayDifference = abs(components.day ?? 0)
-        return dayDifference <= 5
+        return dayDifference <= 4
     }
     
     //advances the current date by the speicied parameter
