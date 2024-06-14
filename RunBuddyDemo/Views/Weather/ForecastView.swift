@@ -22,7 +22,7 @@ struct ForecastView: View {
     @ObservedObject var engine = BuddyEngine()
     @StateObject var weatherEngine = WeatherEngine()
     
-    @State var isAnimating: Bool = false
+    @State var isAnimating: Bool = false //TODO: change to a binding to track mutations.
     @State var chartForecasts = [ChartForecast]()
     
     @State var location: CLLocationCoordinate2D
@@ -75,8 +75,6 @@ struct ForecastView: View {
                             Text(engine.chunkResponse)
                                 .lineLimit(nil)
                             Spacer()
-                            
-                            // Text("This is a test..")
                         }
                     }
                     .padding(.horizontal)
@@ -214,6 +212,8 @@ struct ForecastView: View {
                     
                     //TODO: only call the engine if the target date
                     //is within 6 days of the current date.
+                    
+                    
                                         
                     //build a new prompt for weather analysis
                     let prompt = Prompt()
@@ -235,7 +235,7 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-06-13"
+    @State var targetDate = "2024-06-14"
     
     return VStack {
         ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", distance: "3.1")
