@@ -14,7 +14,7 @@ struct Prompt {
     func weatherAnalysisPrompt(with forecasts: [ChartForecast], name: String, targetDate: String) -> String {
         
         let finalPrompt = """
-        User: I am planning a run today. Preferably, I'd like to avoid running in extreme heat or rain. The response should be provide a single 30 to 40 word paragraph. Assume I want to run during daylight hours. Do not provide any recommendations for clothing, hydration or nutrition. Any references to times should be in 12-hour format not 24-hour format. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+        User: I am planning a run today. Preferably, I'd like to avoid running in extreme heat, humdity or rain. The response should be provide a single 30 to 40 word paragraph. Assume I want to run during daylight hours. Do not provide any recommendations for clothing, hydration or nutrition. Any references to times should be in 12-hour fo∫rmat not 24-hour format. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
 
         Location: \(name)
 
@@ -31,6 +31,24 @@ struct Prompt {
         return finalPrompt
         
     }
+    
+    //create a prompt based on nutritional requirements
+    func newNutritionPrompt(with forecasts: [ChartForecast], name: String, duration: String, intensity: String) -> String? {
+        
+        let finalPrompt = """
+         
+                 User: I am planning a threshold intensity run for 90 minutes. I want nutritional advice on fueling with gels during the my run. How many gels should I consume and at what time interval? Provide a single paragraph response of 150 words or less. The general tone of the response should be upbeat, positive and encouraging. Consider the altitude of my location in terms of any additional nutrition. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+                               
+                 Location: Gig Harbor, WA
+                      
+                  Planned Exercise: Outdoor running
+                              
+                  Weather Forecast Data: Sunny with a high of 95 and low of 68. Humidity is 98%.
+         
+         """
+        return finalPrompt
+    }
+    
     
     //MARK: Helper functions
     
@@ -57,11 +75,6 @@ struct Prompt {
         return results
     }
     
-
-    //create a prompt based on nutritional requirements
-    func newNutritionPrompt(location: CLLocationCoordinate2D, distance: Double, targetDate: Date) -> String? {        
-        return nil
-    }
     
     //create a prompt based on hydration requirements
     func newHydrationPrompt(location: CLLocationCoordinate2D, distance: Double, targetDate: Date) -> String? {

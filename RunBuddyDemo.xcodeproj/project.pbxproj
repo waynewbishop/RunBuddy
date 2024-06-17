@@ -33,6 +33,8 @@
 		DAA42B142BE1D9BD00B041E9 /* SheetStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA42B132BE1D9BD00B041E9 /* SheetStyleModifier.swift */; };
 		DAA87AB12C1BE22300CF11F4 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB02C1BE22300CF11F4 /* DurationView.swift */; };
 		DAA87AB32C1BE48900CF11F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */; };
+		DAA87AB82C1F85FB00CF11F4 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */; };
+		DAA87ABB2C1FE9D300CF11F4 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABA2C1FE9D300CF11F4 /* FavoriteCell.swift */; };
 		DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */; };
 		DAAABCA52BC71F9D00A4C09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */; };
 		DAAABCA92BC71F9D00A4C09A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA82BC71F9D00A4C09A /* Preview Assets.xcassets */; };
@@ -80,6 +82,8 @@
 		DAA42B132BE1D9BD00B041E9 /* SheetStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetStyleModifier.swift; sourceTree = "<group>"; };
 		DAA87AB02C1BE22300CF11F4 /* DurationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationView.swift; sourceTree = "<group>"; };
 		DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
+		DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		DAA87ABA2C1FE9D300CF11F4 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		DAAABC9D2BC71F9C00A4C09A /* RunBuddyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBuddyApp.swift; sourceTree = "<group>"; };
 		DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			children = (
 				DAAABCB82BCE34D000A4C09A /* Question.swift */,
 				DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */,
+				DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -212,6 +217,14 @@
 				DA57DB6B2C02E47200FE8AD5 /* Colors.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		DAA87AB92C1FE9B100CF11F4 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				DAA87ABA2C1FE9D300CF11F4 /* FavoriteCell.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		DAAABC942BC71F9C00A4C09A = {
@@ -269,6 +282,7 @@
 		DAAABCC02BD0979200A4C09A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DAA87AB92C1FE9B100CF11F4 /* Favorite */,
 				DA728AB92C13BB0C0069B76B /* Analysis */,
 				DA728AB82C13BAAE0069B76B /* Question */,
 				DA57DB6F2C07CE2900FE8AD5 /* Weather */,
@@ -397,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA65619F2C0FACAB0030076B /* Date.swift in Sources */,
+				DAA87AB82C1F85FB00CF11F4 /* Favorite.swift in Sources */,
 				DA57DB542BFF055B00FE8AD5 /* WeatherEngine.swift in Sources */,
 				DA1595632BED5FC800C02D9A /* BuddyConfig.swift in Sources */,
 				DAAABCB72BCE1E7400A4C09A /* MapView.swift in Sources */,
@@ -417,6 +432,7 @@
 				DA57DB682C017EB600FE8AD5 /* Double.swift in Sources */,
 				DAA42B102BE15EA800B041E9 /* QuestionView.swift in Sources */,
 				DAAABCB92BCE34D000A4C09A /* Question.swift in Sources */,
+				DAA87ABB2C1FE9D300CF11F4 /* FavoriteCell.swift in Sources */,
 				DA3536B92BD37062009FDBB2 /* ChartForecast.swift in Sources */,
 				DA5BB94D2BDBFF730010DC12 /* EllipsisView.swift in Sources */,
 				DA57DB562C0134B100FE8AD5 /* WeatherResponse.swift in Sources */,

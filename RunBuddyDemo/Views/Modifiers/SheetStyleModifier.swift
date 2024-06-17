@@ -14,7 +14,7 @@ struct SheetStyleModifier: ViewModifier {
     content
       .padding()
       .interactiveDismissDisabled()
-      .presentationDetents([.height(320) , .large])
+      .presentationDetents([.height(340) , .large])
       //.presentationBackground(.thickMaterial)
       .presentationBackgroundInteraction(.enabled(upThrough: .large))
   }
@@ -22,7 +22,7 @@ struct SheetStyleModifier: ViewModifier {
 
 //the applied name of the modifier
 extension View {
-  func buddySheetStyle() -> some View {
+  func questionSheetStyle() -> some View {
       modifier(SheetStyleModifier())
   }
 }
@@ -36,5 +36,6 @@ extension View {
     .sheet(isPresented: $isSheetPresented) {
         //some sample view can go here..
     }
+
 }
 

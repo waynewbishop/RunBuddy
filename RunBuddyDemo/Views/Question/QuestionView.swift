@@ -78,16 +78,7 @@ var longitude: String {
                             .autocorrectionDisabled()
                             .autocapitalization(.words)  // Better for place names
                             .onSubmit() {
-                                let engine = SearchEngine(searchResults: $searchResults)
-                                
-                                Task {
-                                    do {
-                                        try await engine.search(for: name, in: .washington)
-                                    }
-                                    catch {
-                                        print(error.localizedDescription)
-                                    }
-                                } //end task
+                                searchMKMapItems()
                             }
                             .onAppear {
                                 name = persistedName // Load persisted value on appear
@@ -97,6 +88,13 @@ var longitude: String {
                             }
                     }
                 }
+                HStack {
+                    Text("Search for a favorite destination like a park or trailhead. You can also pan and zoom the map to a specific location.")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                
                 
                 VStack {
                     Divider()
@@ -104,19 +102,21 @@ var longitude: String {
                 }
                 .frame(height: 50) // set the desired VStack height
                 
-                
                 VStack (alignment: .leading, content: {
                     Text("MAP DETAILS")
                         .font(.subheadline)
                     
+                    //note: we may need to remove this section and replace with a horiztonal scrollview.
                     GroupBox {
                         LabeledContent("Latitude") {
                             Text(latitude)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         }
                         .padding(.bottom, 15)
                         
                         LabeledContent("Longitude") {
                             Text(longitude)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         }
                         .padding(.bottom, 15)
                     }
@@ -135,7 +135,7 @@ var longitude: String {
                     
                     GroupBox {
                         
-                        LabeledContent("Run Duration") {
+                        LabeledContent("Duration") {
                             DurationView(selectedOption: $durationOption)
                                 .padding(.bottom, 20)
                         }
@@ -177,7 +177,7 @@ var longitude: String {
                 })
                 
             }
-            .buddySheetStyle()
+            .questionSheetStyle()
             Spacer() //top align VStack
             
             VStack {
@@ -225,6 +225,21 @@ var longitude: String {
         }
         
     } //end view
+    
+    //search for MKMapItems
+    private func searchMKMapItems() {
+        let engine = SearchEngine(searchResults: $searchResults)
+        
+        Task {
+            do {
+                try await engine.search(for: name, in: .washington)
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        } //end task
+        
+    } //end function
     
 }
 

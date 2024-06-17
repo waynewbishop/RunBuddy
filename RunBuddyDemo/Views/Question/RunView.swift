@@ -11,7 +11,7 @@ struct RunView: View {
     
     @Binding var selectedOption: String
     
-    let options = ["Easy", "Interval", "Tempo", "Threshold", "Fartlek", "Progression", "Hill Repeats", "Race"]
+    let options = ["Easy", "Tempo", "Threshold", "Interval", "Fartlek", "Progression", "Hill Repeats", "Race"]
     
     var body: some View {
         Menu {
