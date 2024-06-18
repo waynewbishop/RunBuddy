@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct RunBuddyApp: App {
     var body: some Scene {
         WindowGroup {
-            //ForecastView()
             MapView()
+                .modelContainer(for: Favorite.self)
         }
     }
 }

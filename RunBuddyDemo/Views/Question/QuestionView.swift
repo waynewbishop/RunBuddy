@@ -67,8 +67,17 @@ var longitude: String {
                     Text("Run Buddy")
                         .font(.title)
                         .bold()
-                    // .padding()
                     Spacer()
+                    Button(action: {
+                        print("now adding new favorite..")
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color.yellow)
+                            .cornerRadius(10)
+                    }
                 }
                 
                 GroupBox {
@@ -86,13 +95,15 @@ var longitude: String {
                             .onChange(of: name) { oldValue, newValue in
                                persistedName = newValue // Save changes to persisted value
                             }
+                       Spacer()
                     }
                 }
                 HStack {
-                    Text("Search for a favorite destination like a park or trailhead. You can also pan and zoom the map to a specific location.")
+                    Text("Search for a destination like a park or trailhead. You can also pan and zoom the map to a specific location.")
                         .font(.caption)
                         .foregroundColor(.gray)
                     Spacer()
+                    
                 }
                 
                 
@@ -106,7 +117,7 @@ var longitude: String {
                     Text("MAP DETAILS")
                         .font(.subheadline)
                     
-                    //note: we may need to remove this section and replace with a horiztonal scrollview.
+                    
                     GroupBox {
                         LabeledContent("Latitude") {
                             Text(latitude)

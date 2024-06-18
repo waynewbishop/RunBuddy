@@ -9,10 +9,17 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-//builds the structure for map favorites
-struct Favorite: Identifiable {
-    var id: ObjectIdentifier
+
+/// Builds the structure for map favorites
+@Model
+class Favorite {
     var name: String
-    var icon: Image
-    var description: String?
+    var systemIcon: String
+    var desc: String?
+    
+    init(name: String = "", systemIcon: String = "", desc: String? = nil) {
+        self.name = name
+        self.systemIcon = systemIcon
+        self.desc = desc
+    }
 }

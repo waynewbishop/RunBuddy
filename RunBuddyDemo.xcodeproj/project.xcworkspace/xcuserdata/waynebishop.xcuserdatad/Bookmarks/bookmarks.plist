@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>110</string>
+					<string>121</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>109</string>
+					<string>120</string>
 					<key>Timestamp</key>
-					<string>740288851.186264</string>
+					<string>740381610.525394</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -38,7 +38,7 @@
 </string>
 				<key>leading</key>
 				<string>                    
-                    //note: we may need to remove this section and replace with a horiztonal scrollview.
+                    
 </string>
 				<key>trailing</key>
 				<string>                        LabeledContent("Latitude") {
@@ -46,6 +46,8 @@
                                 .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
 </string>
 			</dict>
+			<key>title</key>
+			<string>Remove this section and replace with a horiztonal scrollview.</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
@@ -57,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>10</string>
+					<string>13</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>9</string>
+					<string>12</string>
 					<key>Timestamp</key>
-					<string>740290603.299726</string>
+					<string>740338552.7033761</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -82,15 +84,17 @@
 				<string>
 </string>
 				<key>leading</key>
-				<string>import SwiftUI
-
-//TODO: now we need to add the Favorite structure as a binding..</string>
-				<key>trailing</key>
 				<string>struct FavoriteCell: View {
-
-//@Binding var favorite: Favorite
+    
+</string>
+				<key>trailing</key>
+				<string>
+@Binding var selectedName: String
+var systemIcon: String
 </string>
 			</dict>
+			<key>title</key>
+			<string>Parameters are to include a @Binding to name as well as a Favorite struct. The when selected Favorite.name mutates the @Binding name. This will allow me to track changes to the Binding from FavoriteView. </string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
