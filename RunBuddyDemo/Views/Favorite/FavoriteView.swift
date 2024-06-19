@@ -1,5 +1,5 @@
 //
-//  FavoriteCell.swift
+//  FavoriteView.swift
 //  RunBuddyDemo
 //
 //  Created by Wayne Bishop on 6/16/24.
@@ -7,36 +7,31 @@
 
 import SwiftUI
 
-
 struct FavoriteView: View {
     
-@Binding var selectedName: String
-var systemIcon: String
+var name: String
+var icon: String
     
     var body: some View {
         VStack {
-            Button(action: {
-                // Add your action code here, e.g., toggle favorite state
-                print("now loading a favorite location...")
-            }) {
-                Image(systemName: systemIcon)
-                    .font(.system(size: 35, weight: .regular))
+            VStack {
+                Image(systemName: icon)
+                    .font(.system(size: 25, weight: .regular))
                     .foregroundStyle(.white)
                     .background(
                         Circle()
                             .fill(getRandomColor().opacity(0.4))
-                            .frame(width: 65, height: 65)
+                            .frame(width: 45, height: 45)
                     )
             }
+            .frame(height: 45)
+            VStack {
+                Text(name)
+                    .font(.caption2)
+            }
         }
-        .frame(height: 65) // set the desired VStack height
-        VStack {
-            Text(selectedName)
-        }
-        
     }
-    
-    
+        
     //obtains a random color
     func getRandomColor() -> Color {
         let colors: [Color] = [.green, .blue, .yellow, .orange, .red, .purple, .gray]
@@ -52,6 +47,6 @@ var systemIcon: String
     let systemIcon = "mappin.and.ellipse"
     
     return VStack {
-        FavoriteView(selectedName: $name, systemIcon: systemIcon)
+        FavoriteView(name: name, icon: systemIcon)
     }
 }

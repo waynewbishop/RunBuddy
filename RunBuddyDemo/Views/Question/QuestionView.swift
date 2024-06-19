@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SwiftData
 
 struct QuestionView: View {
 
@@ -23,6 +24,8 @@ struct QuestionView: View {
 
 //persistent storage
 @AppStorage("name") private var persistedName = ""
+@Query private var favorites: [Favorite]
+@Environment(\.modelContext) private var modelContext
     
 @State var name: String = ""
 @State var selectedDate = Date()
@@ -69,14 +72,13 @@ var longitude: String {
                         .bold()
                     Spacer()
                     Button(action: {
-                        print("now adding new favorite..")
+                        self.saveFavorite()
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.subheadline)
                             .foregroundColor(.white)
                             .padding(8)
-                            .background(Color.yellow)
-                            .cornerRadius(10)
+                            .background(Circle().fill(Color.yellow))
                     }
                 }
                 
@@ -103,49 +105,41 @@ var longitude: String {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Spacer()
-                    
                 }
+                .padding(.bottom, 20)
                 
-                
-                VStack {
-                    Divider()
-                        .background(.gray)
+                HStack {
+                    Text("Favorites")
+                        .font(.subheadline.bold())
+                        .foregroundColor(.gray)
+                    Spacer()
                 }
-                .frame(height: 50) // set the desired VStack height
-                
-                VStack (alignment: .leading, content: {
-                    Text("MAP DETAILS")
-                        .font(.subheadline)
-                    
-                    
-                    GroupBox {
-                        LabeledContent("Latitude") {
-                            Text(latitude)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                GroupBox {
+                    HStack {
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 16) {
+                                ForEach(favorites, id: \.name) { favorite in
+                                    FavoriteView(name: favorite.name, icon: favorite.systemIcon)
+                                }
+                            }
                         }
-                        .padding(.bottom, 15)
-                        
-                        LabeledContent("Longitude") {
-                            Text(longitude)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        }
-                        .padding(.bottom, 15)
+                      Spacer()
                     }
-                })
+                }
+                
                 
                 VStack {
                     Divider()
                         .background(.gray)
                 }
                 .frame(height: 50) // set the desired VStack height
-                
-                
+                                
                 VStack (alignment: .leading, content: {
-                    Text("RUN DETAILS")
-                        .font(.subheadline)
+                    Text("Run Details")
+                        .font(.subheadline.bold())
+                        .foregroundColor(.gray)
                     
                     GroupBox {
-                        
                         LabeledContent("Duration") {
                             DurationView(selectedOption: $durationOption)
                                 .padding(.bottom, 20)
@@ -236,6 +230,29 @@ var longitude: String {
         }
         
     } //end view
+    
+    //save a favorite location
+    private func saveFavorite() {
+        
+        if (self.name != "") && (searchResults.count > 0) {
+            let engine = SearchEngine(searchResults: $searchResults)
+            
+            //obtain the current search context
+            let mapItem = searchResults[0]
+            let imageName = engine.imageSystemIconForCategory(mapItem.pointOfInterestCategory)
+            
+            //create a persist record using context
+            let newFavorite = Favorite(name: name, systemIcon: imageName)
+            modelContext.insert(newFavorite)
+            
+            print("icon name: \(imageName)")
+            
+            print("there are: \(favorites.count)")
+                            
+        }
+        
+    }
+    
     
     //search for MKMapItems
     private func searchMKMapItems() {

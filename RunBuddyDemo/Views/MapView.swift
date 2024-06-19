@@ -36,6 +36,7 @@ struct MapView: View {
         .sheet(isPresented: $isSheetPresented) {
             QuestionView(searchRegion: $searchRegion, searchResults: $searchResults)
                 .background(Colors.sheetBackgroundColor) 
+                .modelContainer(for: Favorite.self)
         }
         .onMapCameraChange { context in
             searchRegion = context.region

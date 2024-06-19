@@ -13,7 +13,6 @@ struct RunBuddyApp: App {
     var body: some Scene {
         WindowGroup {
             MapView()
-                .modelContainer(for: Favorite.self)
         }
     }
 }
