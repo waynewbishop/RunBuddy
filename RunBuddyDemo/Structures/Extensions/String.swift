@@ -21,5 +21,15 @@ extension String {
         formatter.dateFormat = "EEEE, MMMM d"
         return formatter.string(from: date)
     }
+    
+    func truncated(maxLength: Int = 15) -> String {
+       if count <= maxLength {
+           return self
+       } else {
+           let truncatedString = String(prefix(maxLength - 3))
+           return truncatedString + "..."
+       }
+   }
+    
 }
 

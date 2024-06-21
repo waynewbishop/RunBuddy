@@ -51,53 +51,6 @@ var systemIcon: String
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>29</string>
-					<key>StartingColumnNumber</key>
-					<string>27</string>
-					<key>StartingLineNumber</key>
-					<string>28</string>
-					<key>Timestamp</key>
-					<string>740453016.4406641</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>RunBuddyDemo/Views/Favorite/FavoriteView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>            .frame(height: 45)
-            VStack {
-                Text(name)</string>
-				<key>trailing</key>
-				<string>                    .font(.caption2)
-            }
-        }
-</string>
-			</dict>
-			<key>title</key>
-			<string>Create a helper function to truncate displayed text after 15 digits.</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
 	</array>
 </dict>
 </plist>

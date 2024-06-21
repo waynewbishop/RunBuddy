@@ -78,7 +78,7 @@ var longitude: String {
                             .font(.subheadline)
                             .foregroundColor(.white)
                             .padding(8)
-                            .background(Circle().fill(Color.yellow))
+                            .background(Circle().fill(Color.buttonColor))
                     }
                 }
                 
@@ -93,6 +93,9 @@ var longitude: String {
                             }
                             .onAppear {
                                 name = persistedName // Load persisted value on appear
+                                if self.name != "" {
+                                    self.searchMKMapItems()
+                                }
                             }
                             .onChange(of: name) { oldValue, newValue in
                                persistedName = newValue // Save changes to persisted value
@@ -119,7 +122,14 @@ var longitude: String {
                         ScrollView(.horizontal) {
                             HStack(spacing: 16) {
                                 ForEach(favorites, id: \.name) { favorite in
-                                    FavoriteView(name: favorite.name, icon: favorite.systemIcon)
+                                    Button(action: {
+                                        // Action to perform when the button is tapped
+                                        print("Tapped \(favorite.name)")
+                                        name = favorite.name
+                                        self.searchMKMapItems()
+                                    }) {
+                                        FavoriteView(name: favorite.name, icon: favorite.systemIcon)
+                                    }
                                 }
                             }
                         }
@@ -233,24 +243,19 @@ var longitude: String {
     
     //save a favorite location
     private func saveFavorite() {
-        
         if (self.name != "") && (searchResults.count > 0) {
             let engine = SearchEngine(searchResults: $searchResults)
             
-            //obtain the current search context
+            //obtain current search context
             let mapItem = searchResults[0]
             let imageName = engine.imageSystemIconForCategory(mapItem.pointOfInterestCategory)
             
-            //create a persist record using context
+            //persist record using context
             let newFavorite = Favorite(name: name, systemIcon: imageName)
             modelContext.insert(newFavorite)
             
-            print("icon name: \(imageName)")
-            
             print("there are: \(favorites.count)")
-                            
-        }
-        
+        }        
     }
     
     
