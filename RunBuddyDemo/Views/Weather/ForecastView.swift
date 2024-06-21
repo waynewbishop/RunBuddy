@@ -22,9 +22,7 @@ struct ForecastView: View {
     @ObservedObject var engine = BuddyEngine()
     @StateObject var weatherEngine = WeatherEngine()
     
-    @State var isAnimating: Bool = false //TODO: change to a binding to track mutations.
     @State var chartForecasts = [ChartForecast]()
-    
     @State var location: CLLocationCoordinate2D
     @State var targetDate = ""
     @State var name = ""
@@ -247,7 +245,7 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-06-14"
+    @State var targetDate = "2024-06-18"
     
     return VStack {
         ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")

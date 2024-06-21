@@ -40,6 +40,7 @@ struct QuestionView: View {
 @State var isAnimating: Bool = true
 @State var showModal: Bool = false
 @State var showAlert: Bool = false
+@State var showSavedAlert = false
 
 var latitude: String {
     if let region = searchRegion {
@@ -72,13 +73,22 @@ var longitude: String {
                         .bold()
                     Spacer()
                     Button(action: {
-                        self.saveFavorite()
+                        if saveFavorite() {
+                          self.showSavedAlert = true
+                        }
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.subheadline)
                             .foregroundColor(.white)
                             .padding(8)
                             .background(Circle().fill(Color.buttonColor))
+                    }
+                    .alert(isPresented: $showSavedAlert) {
+                        Alert(
+                            title: Text("Favorite Saved"),
+                            message: Text("\(self.name) has been saved to your favorites."),
+                            dismissButton: .default(Text("OK"))
+                        )
                     }
                 }
                 
@@ -111,32 +121,33 @@ var longitude: String {
                 }
                 .padding(.bottom, 20)
                 
-                HStack {
-                    Text("Favorites")
-                        .font(.subheadline.bold())
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-                GroupBox {
+                if !favorites.isEmpty {
                     HStack {
-                        ScrollView(.horizontal) {
-                            HStack(spacing: 16) {
-                                ForEach(favorites, id: \.name) { favorite in
-                                    Button(action: {
-                                        // Action to perform when the button is tapped
-                                        print("Tapped \(favorite.name)")
-                                        name = favorite.name
-                                        self.searchMKMapItems()
-                                    }) {
-                                        FavoriteView(name: favorite.name, icon: favorite.systemIcon)
+                        Text("Favorites")
+                            .font(.subheadline.bold())
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    GroupBox {
+                        HStack {
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 16) {
+                                    ForEach(favorites, id: \.name) { favorite in
+                                        Button(action: {
+                                            // Action to perform when the button is tapped
+                                            print("Tapped \(favorite.name)")
+                                            name = favorite.name
+                                            self.searchMKMapItems()
+                                        }) {
+                                            FavoriteImage(name: favorite.name, icon: favorite.systemIcon)
+                                        }
                                     }
                                 }
                             }
+                          Spacer()
                         }
-                      Spacer()
                     }
                 }
-                
                 
                 VStack {
                     Divider()
@@ -242,7 +253,7 @@ var longitude: String {
     } //end view
     
     //save a favorite location
-    private func saveFavorite() {
+    private func saveFavorite() -> Bool {
         if (self.name != "") && (searchResults.count > 0) {
             let engine = SearchEngine(searchResults: $searchResults)
             
@@ -255,7 +266,11 @@ var longitude: String {
             modelContext.insert(newFavorite)
             
             print("there are: \(favorites.count)")
-        }        
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     

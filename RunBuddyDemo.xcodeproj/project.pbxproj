@@ -34,7 +34,7 @@
 		DAA87AB12C1BE22300CF11F4 /* DurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB02C1BE22300CF11F4 /* DurationView.swift */; };
 		DAA87AB32C1BE48900CF11F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */; };
 		DAA87AB82C1F85FB00CF11F4 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */; };
-		DAA87ABB2C1FE9D300CF11F4 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABA2C1FE9D300CF11F4 /* FavoriteView.swift */; };
+		DAA87ABB2C1FE9D300CF11F4 /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABA2C1FE9D300CF11F4 /* FavoriteImage.swift */; };
 		DAA87ABF2C21103C00CF11F4 /* FavoriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABE2C21103C00CF11F4 /* FavoriteFactory.swift */; };
 		DAA87AC12C250EBD00CF11F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC02C250EBC00CF11F4 /* Color.swift */; };
 		DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */; };
@@ -85,7 +85,7 @@
 		DAA87AB02C1BE22300CF11F4 /* DurationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationView.swift; sourceTree = "<group>"; };
 		DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
-		DAA87ABA2C1FE9D300CF11F4 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		DAA87ABA2C1FE9D300CF11F4 /* FavoriteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImage.swift; sourceTree = "<group>"; };
 		DAA87ABE2C21103C00CF11F4 /* FavoriteFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFactory.swift; sourceTree = "<group>"; };
 		DAA87AC02C250EBC00CF11F4 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DAAABC9D2BC71F9C00A4C09A /* RunBuddyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +227,7 @@
 		DAA87AB92C1FE9B100CF11F4 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				DAA87ABA2C1FE9D300CF11F4 /* FavoriteView.swift */,
+				DAA87ABA2C1FE9D300CF11F4 /* FavoriteImage.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -440,7 +440,7 @@
 				DA57DB682C017EB600FE8AD5 /* Double.swift in Sources */,
 				DAA42B102BE15EA800B041E9 /* QuestionView.swift in Sources */,
 				DAAABCB92BCE34D000A4C09A /* Question.swift in Sources */,
-				DAA87ABB2C1FE9D300CF11F4 /* FavoriteView.swift in Sources */,
+				DAA87ABB2C1FE9D300CF11F4 /* FavoriteImage.swift in Sources */,
 				DA3536B92BD37062009FDBB2 /* ChartForecast.swift in Sources */,
 				DA5BB94D2BDBFF730010DC12 /* EllipsisView.swift in Sources */,
 				DA57DB562C0134B100FE8AD5 /* WeatherResponse.swift in Sources */,

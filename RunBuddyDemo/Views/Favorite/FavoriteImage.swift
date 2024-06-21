@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct FavoriteView: View {
+struct FavoriteImage: View {
+
+@Environment(\.colorScheme) private var colorScheme
     
 @State var name: String
 @State var displayName: String = ""
@@ -17,19 +19,19 @@ struct FavoriteView: View {
         VStack {
             VStack {
                 Image(systemName: icon)
-                    .font(.system(size: 18, weight: .regular))
+                    .font(.system(size: 25, weight: .regular))
                     .foregroundStyle(.white)
                     .background(
                         Circle()
                             .fill(Color.buttonColor.opacity(1.0))
-                            .frame(width: 35, height: 35)
+                            .frame(width: 45, height: 45)
                     )
             }
-            .frame(height: 45)
+            .frame(height: 50)
             VStack {
                 Text(name.truncated())
-                    .font(.caption2)
-                    .foregroundStyle(Color.black)
+                    .font(.caption)
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
             }
             .onAppear{
                 displayName = name
@@ -45,6 +47,6 @@ struct FavoriteView: View {
     let systemIcon = "mappin.and.ellipse"
     
     return VStack {
-        FavoriteView(name: name, displayName: name, icon: systemIcon)
+        FavoriteImage(name: name, displayName: name, icon: systemIcon)
     }
 }

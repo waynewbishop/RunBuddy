@@ -12,9 +12,9 @@ import CoreLocation
 struct AnalysisView: View {
     @Binding var showModal: Bool
     
+    @State private var refreshTrigger = false
     @State var question: Question
     @State var isAnimating: Bool = true
-    
     
     var targetDate: String {
         let formatter = DateFormatter()
@@ -27,7 +27,16 @@ struct AnalysisView: View {
         ScrollView {
             VStack {                
                 HStack {
-                    EllipsisView(isAnimating: $isAnimating)
+                    Spacer()
+                }
+                .padding()
+                HStack {
+                    Button(action: {
+                       refreshView()
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title2)
+                    }
                     Spacer()
                     Button(action: {
                         showModal = false
@@ -38,14 +47,22 @@ struct AnalysisView: View {
                     }
                 }
                 .padding(.horizontal)
-         
-                 
+                          
                 VStack {
                     //show weather and supporting analysis
                     ForecastView(location: question.location, targetDate: targetDate, name: question.name, duration: question.duration)
                 }
             }
+            .id(refreshTrigger)
         }
+    }
+    
+    //invoke view invalidation
+    private func refreshView() {
+        print("view being refreshed..")
+        
+        // Toggle the refresh trigger
+        refreshTrigger.toggle()
     }
 }
 

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ThumbsView: View {
     
-    //TODO: this is where we save the result of the response
-    //for future use. 
     
     var body: some View {
             GroupBox {
