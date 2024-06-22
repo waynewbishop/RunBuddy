@@ -40,14 +40,14 @@ struct MapView: View {
         }
         .onMapCameraChange { context in
             searchRegion = context.region
-            //print(searchRegion.debugDescription)
+            print(searchRegion.debugDescription)
         }
         .onChange(of: searchResults) {
             
             let mapItem = searchResults[0]
             
             let coordinate = mapItem.placemark.coordinate
-            let zoomLevel: Double = 0.015
+            let zoomLevel: Double = 0.024
                         
             withAnimation(.easeInOut(duration: 1.00)) { // Adjust animation duration
                 position = .region(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: zoomLevel, longitudeDelta: zoomLevel)))

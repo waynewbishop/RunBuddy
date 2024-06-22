@@ -12,14 +12,20 @@ import SwiftUI
 
 /// Builds the structure for map favorites
 @Model
-class Favorite {
+class Favorite: Identifiable {
+    var id: UUID
     var name: String
+    var address: String
     var systemIcon: String
     var desc: String?
+    var order: Int
     
-    init(name: String = "", systemIcon: String = "", desc: String? = nil) {
+    init(name: String = "", address: String = "", systemIcon: String = "", desc: String? = nil) {
+        self.id = UUID()
         self.name = name
+        self.address = address
         self.systemIcon = systemIcon
         self.desc = desc
+        self.order = 0
     }
 }

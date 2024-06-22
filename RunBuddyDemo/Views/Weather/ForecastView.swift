@@ -64,9 +64,6 @@ struct ForecastView: View {
     var body: some View {
                
         VStack {
-            VStack {
-                Spacer()
-            }
              VStack {
                 Text(self.name)
                      .font(.title)

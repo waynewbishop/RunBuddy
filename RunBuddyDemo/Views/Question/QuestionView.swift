@@ -28,7 +28,7 @@ struct QuestionView: View {
 @Environment(\.modelContext) private var modelContext
     
 @State var name: String = ""
-@State var selectedDate = Date()
+@State var selectedDate = setDefaultDate()
 @State var selectedOption = "Easy"
 @State var terrainOption = "Road"
 @State var durationOption = "30 minutes"
@@ -59,8 +59,7 @@ var longitude: String {
         return ""
     }
 }
-    
-    
+
     var body: some View {
         ScrollView {
             VStack {
@@ -73,9 +72,13 @@ var longitude: String {
                         .bold()
                     Spacer()
                     Button(action: {
+                        //deleteAllData(Favorite.self)
+                        
                         if saveFavorite() {
                           self.showSavedAlert = true
                         }
+                        
+                        
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.subheadline)
@@ -252,6 +255,8 @@ var longitude: String {
         
     } //end view
     
+    //MARK: Helper Functions
+    
     //save a favorite location
     private func saveFavorite() -> Bool {
         if (self.name != "") && (searchResults.count > 0) {
@@ -259,10 +264,17 @@ var longitude: String {
             
             //obtain current search context
             let mapItem = searchResults[0]
+            
+            let address = [
+                   mapItem.placemark.thoroughfare,
+                   mapItem.placemark.locality
+               ].compactMap { $0 }.joined(separator: ", ")
+
+            
             let imageName = engine.imageSystemIconForCategory(mapItem.pointOfInterestCategory)
             
-            //persist record using context
-            let newFavorite = Favorite(name: name, systemIcon: imageName)
+            //persist favorite records
+            let newFavorite = Favorite(name: name, address: address, systemIcon: imageName)
             modelContext.insert(newFavorite)
             
             print("there are: \(favorites.count)")
@@ -272,8 +284,7 @@ var longitude: String {
             return false
         }
     }
-    
-    
+        
     //search for MKMapItems
     private func searchMKMapItems() {
         let engine = SearchEngine(searchResults: $searchResults)
@@ -288,6 +299,34 @@ var longitude: String {
         } //end task
         
     } //end function
+
+    
+    
+    /// Adjust the current date. The idea being most runners go out in the mornings and not evening.
+    /// - Returns: The current or next date
+    static func setDefaultDate() -> Date {
+       let now = Date()
+       let calendar = Calendar.current
+       let hour = calendar.component(.hour, from: now)
+       
+       if hour >= 12 {
+           // If it's 12 PM or later, return tomorrow's date
+           return calendar.date(byAdding: .day, value: 1, to: now) ?? now
+       } else {
+           // If it's before 12 PM, return today's date
+           return now
+       }
+    }
+    
+          
+    //removes all favorites
+    func deleteAllData<T: PersistentModel>(_ type: T.Type) {
+        do {
+            try modelContext.delete(model: type)
+        } catch {
+            print("Error deleting data: \(error)")
+        }
+    }
     
 }
 

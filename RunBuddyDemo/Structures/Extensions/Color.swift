@@ -12,6 +12,7 @@ import SwiftUI
 extension Color {
     //sets the default color for all app buttons
     static var buttonColor: Color {
-        Color.yellow
+        Color.blue
+            .opacity(0.5)
     }
 }
