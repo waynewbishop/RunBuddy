@@ -88,9 +88,9 @@ struct SearchEngine {
         case .museum:
             return "paintpalette"
         case .nationalPark:
-            return "tree"
+            return "leaf"
         case .park:
-            return "figure.walk"
+            return "figure.run"
         case .parking:
             return "parkingsign"
         case .pharmacy:

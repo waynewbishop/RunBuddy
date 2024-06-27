@@ -30,7 +30,7 @@ struct FavoriteImage: View {
             .frame(height: 50)
             VStack {
                 Text(name.truncated())
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
             }
             .onAppear{

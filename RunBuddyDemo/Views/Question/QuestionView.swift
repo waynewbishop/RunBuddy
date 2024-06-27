@@ -41,6 +41,8 @@ struct QuestionView: View {
 @State var showModal: Bool = false
 @State var showAlert: Bool = false
 @State var showSavedAlert = false
+@State var showFavorite: Bool = false
+
 
 var latitude: String {
     if let region = searchRegion {
@@ -122,7 +124,7 @@ var longitude: String {
                         .foregroundColor(.gray)
                     Spacer()
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 30)
                 
                 if !favorites.isEmpty {
                     HStack {
@@ -130,6 +132,18 @@ var longitude: String {
                             .font(.subheadline.bold())
                             .foregroundColor(.gray)
                         Spacer()
+                        
+                        Button(action: {
+                            // Add your button action here
+                            showFavorite = true
+                        }) {
+                            Text("More")
+                                .font(.subheadline.bold())
+                        }
+                        .sheet(isPresented: $showFavorite) {
+                          FavoriteView(showFavorite: $showFavorite)
+                        }
+                        
                     }
                     GroupBox {
                         HStack {
@@ -152,9 +166,9 @@ var longitude: String {
                     }
                 }
                 
+                
                 VStack {
-                    Divider()
-                        .background(.gray)
+                    Spacer()
                 }
                 .frame(height: 50) // set the desired VStack height
                                 
@@ -264,13 +278,7 @@ var longitude: String {
             
             //obtain current search context
             let mapItem = searchResults[0]
-            
-            let address = [
-                   mapItem.placemark.thoroughfare,
-                   mapItem.placemark.locality
-               ].compactMap { $0 }.joined(separator: ", ")
-
-            
+            let address = mapItem.placemark.locality
             let imageName = engine.imageSystemIconForCategory(mapItem.pointOfInterestCategory)
             
             //persist favorite records
@@ -336,5 +344,6 @@ var longitude: String {
     @State var searchResults: [MKMapItem] = []
     return VStack {
         QuestionView(searchRegion: $visibleRegion, searchResults: $searchResults)
+            .modelContainer(for: Favorite.self)
     }
 }

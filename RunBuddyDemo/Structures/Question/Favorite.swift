@@ -10,17 +10,17 @@ import SwiftData
 import SwiftUI
 
 
-/// Builds the structure for map favorites
+/// Builds the structure for map favorites.
 @Model
 class Favorite: Identifiable {
-    var id: UUID
-    var name: String
-    var address: String
+    let id: UUID
+    @Attribute(.unique) var name: String //provides upsert functionality for matching names
+    var address: String?
     var systemIcon: String
     var desc: String?
     var order: Int
     
-    init(name: String = "", address: String = "", systemIcon: String = "", desc: String? = nil) {
+    init(name: String = "", address: String? = "", systemIcon: String = "", desc: String? = nil) {
         self.id = UUID()
         self.name = name
         self.address = address

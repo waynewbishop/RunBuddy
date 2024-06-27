@@ -64,6 +64,11 @@ struct AnalysisView: View {
         // Toggle the refresh trigger
         refreshTrigger.toggle()
     }
+    
+    //get driving directions for the selected location
+    private func getDirections() {
+        
+    }
 }
 
 
