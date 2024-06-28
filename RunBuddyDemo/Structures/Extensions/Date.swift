@@ -8,6 +8,15 @@
 import Foundation
 
 extension Date {
+    
+
+    //provides the local timezone based on a Unix timestamp
+    func fromUnixTimestampToLocal(_ timestamp: Int) -> Date {
+        let utcDate = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let timeZoneOffset = TimeZone.current.secondsFromGMT()
+        
+        return utcDate.addingTimeInterval(TimeInterval(timeZoneOffset))
+    }
         
     //determines if supplied date falls within a 5 day range.
     func isWithinFiveDays(of date: Date) -> Bool {

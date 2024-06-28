@@ -21,8 +21,8 @@ struct FavoriteView: View {
                 ForEach(favorites) { favorite in
                     FavoriteRow(favorite: favorite)
                 }
-                .onDelete(perform: deleteFavorites)
                 .onMove(perform: moveFavorites)
+                .onDelete(perform: deleteFavorites)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

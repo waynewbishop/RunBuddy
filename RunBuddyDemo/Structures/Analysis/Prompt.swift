@@ -11,7 +11,7 @@ import CoreLocation
 struct Prompt {
     
     //create a prompt based on weather requirements
-    func weatherAnalysisPrompt(with forecasts: [ChartForecast], name: String, targetDate: String) -> String {
+    func weatherAnalysis(with forecasts: [ChartForecast], name: String, targetDate: String) -> String {
         
         let finalPrompt = """
         User: I am planning a run today. Preferably, I'd like to avoid running in extreme heat, humdity or rain. The response should be provide a single 30 to 40 word paragraph. Assume I want to run during daylight hours. Do not provide any recommendations for clothing, hydration or nutrition. Any references to times should be in 12-hour fo∫rmat not 24-hour format. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.

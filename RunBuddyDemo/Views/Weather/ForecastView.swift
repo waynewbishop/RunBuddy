@@ -189,9 +189,10 @@ struct ForecastView: View {
             do {
                 let forecastResponse = try await weatherEngine.fetchFiveDayForecast(for: location)
                 
-                //TODO: Add support for sunrise and sunset times in weather analysis prompt.
-                //let sunrise = forecastResponse.city.sunrise
-                
+                //include times in weather forecast analysis
+                let sunrise = forecastResponse.city.sunrise.toLocalTimeString
+                let sunset = forecastResponse.city.sunset.toLocalTimeString
+                                
                 //check the location name
                 let city = forecastResponse.city.name
                 if self.name == "" {
@@ -204,8 +205,6 @@ struct ForecastView: View {
                    let targetForecasts = weatherEngine.filterHourlyForecasts(forecastResponse, targetDate: targetDate)
                     
                     if let forecasts = targetForecasts {
-                        //print(forecasts)
-                        
                         weatherEngine.createWeatherSummary(with: forecasts)
                          
                         //iterate through results
@@ -213,7 +212,6 @@ struct ForecastView: View {
                             let item = ChartForecast(dt: forecast.dt, temp: forecast.main.temp, feels_like: forecast.main.feels_like, temp_min: forecast.main.temp_min, temp_max: forecast.main.temp_max, humidity: forecast.main.humidity, pop: forecast.pop)
                             
                             chartForecasts.append(item)
-                           //print(item)
                         }
                     }
                     
@@ -223,7 +221,7 @@ struct ForecastView: View {
                             
                             //build a new prompt for weather analysis
                             let prompt = Prompt()
-                            let revisedPrompt = prompt.weatherAnalysisPrompt(with: chartForecasts, name: name, targetDate: targetDate)
+                            let revisedPrompt = prompt.weatherAnalysis(with: chartForecasts, name: name, targetDate: targetDate)
                                                 
                             self.askRunBuddyAndGetResponse(revisedPrompt)
                         }
@@ -242,7 +240,7 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-06-18"
+    @State var targetDate = "2024-06-28"
     
     return VStack {
         ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")

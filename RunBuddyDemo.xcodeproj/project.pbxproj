@@ -35,9 +35,9 @@
 		DAA87AB32C1BE48900CF11F4 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */; };
 		DAA87AB82C1F85FB00CF11F4 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */; };
 		DAA87ABB2C1FE9D300CF11F4 /* FavoriteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABA2C1FE9D300CF11F4 /* FavoriteImage.swift */; };
-		DAA87ABF2C21103C00CF11F4 /* FavoriteFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ABE2C21103C00CF11F4 /* FavoriteFactory.swift */; };
 		DAA87AC12C250EBD00CF11F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC02C250EBC00CF11F4 /* Color.swift */; };
 		DAA87AC52C263E2A00CF11F4 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */; };
+		DAA87AC72C2E3FF700CF11F4 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC62C2E3FF700CF11F4 /* Int.swift */; };
 		DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */; };
 		DAAABCA52BC71F9D00A4C09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */; };
 		DAAABCA92BC71F9D00A4C09A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA82BC71F9D00A4C09A /* Preview Assets.xcassets */; };
@@ -87,9 +87,9 @@
 		DAA87AB22C1BE48900CF11F4 /* TimeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		DAA87AB72C1F85FB00CF11F4 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		DAA87ABA2C1FE9D300CF11F4 /* FavoriteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImage.swift; sourceTree = "<group>"; };
-		DAA87ABE2C21103C00CF11F4 /* FavoriteFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteFactory.swift; sourceTree = "<group>"; };
 		DAA87AC02C250EBC00CF11F4 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		DAA87AC62C2E3FF700CF11F4 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		DAAABC9D2BC71F9C00A4C09A /* RunBuddyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBuddyApp.swift; sourceTree = "<group>"; };
 		DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +146,7 @@
 				DA65619E2C0FACAB0030076B /* Date.swift */,
 				DA6561A02C0FD98E0030076B /* String.swift */,
 				DAA87AC02C250EBC00CF11F4 /* Color.swift */,
+				DAA87AC62C2E3FF700CF11F4 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -283,7 +284,6 @@
 				DA3536AF2BD2FB9B009FDBB2 /* BuddyEngine.swift */,
 				DACF91CB2BE2F7C700A72BD0 /* SearchEngine.swift */,
 				DA57DB532BFF055B00FE8AD5 /* WeatherEngine.swift */,
-				DAA87ABE2C21103C00CF11F4 /* FavoriteFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -432,9 +432,9 @@
 				DA3536B02BD2FB9B009FDBB2 /* BuddyEngine.swift in Sources */,
 				DA3536B22BD32EB5009FDBB2 /* AnswerView.swift in Sources */,
 				DAA42B122BE1A61300B041E9 /* FieldStyleModifier.swift in Sources */,
-				DAA87ABF2C21103C00CF11F4 /* FavoriteFactory.swift in Sources */,
 				DAA42B142BE1D9BD00B041E9 /* SheetStyleModifier.swift in Sources */,
 				DA57DB712C0D5FEF00FE8AD5 /* History.swift in Sources */,
+				DAA87AC72C2E3FF700CF11F4 /* Int.swift in Sources */,
 				DA1595612BEC93AA00C02D9A /* ThumbsView.swift in Sources */,
 				DA57DB6E2C07897600FE8AD5 /* ForecastView.swift in Sources */,
 				DAA87AB12C1BE22300CF11F4 /* DurationView.swift in Sources */,

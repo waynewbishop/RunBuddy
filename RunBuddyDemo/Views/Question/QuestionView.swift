@@ -24,7 +24,7 @@ struct QuestionView: View {
 
 //persistent storage
 @AppStorage("name") private var persistedName = ""
-@Query private var favorites: [Favorite]
+@Query(sort: \Favorite.order) private var favorites: [Favorite]
 @Environment(\.modelContext) private var modelContext
     
 @State var name: String = ""
@@ -199,7 +199,7 @@ var longitude: String {
                                 .padding(.bottom, 15)
                         }
                         .onChange(of: selectedDate) { oldValue, newValue in
-                            print(newValue)
+                           // print(newValue)
                         }
                         
                         Toggle(isOn: $nutrition) {

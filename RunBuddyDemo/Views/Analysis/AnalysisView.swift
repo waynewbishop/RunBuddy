@@ -57,11 +57,8 @@ struct AnalysisView: View {
         }
     }
     
-    //invoke view invalidation
+    // toggle the refresh trigger
     private func refreshView() {
-        print("view being refreshed..")
-        
-        // Toggle the refresh trigger
         refreshTrigger.toggle()
     }
     

@@ -35,7 +35,7 @@ struct MapView: View {
         .mapStyle(.standard(elevation: .realistic))
         .sheet(isPresented: $isSheetPresented) {
             QuestionView(searchRegion: $searchRegion, searchResults: $searchResults)
-                .background(Colors.sheetBackgroundColor) 
+                .background(Colors.sheetBackgroundColor)
                 .modelContainer(for: Favorite.self)
         }
         .onMapCameraChange { context in
@@ -48,10 +48,11 @@ struct MapView: View {
             
             let coordinate = mapItem.placemark.coordinate
             let zoomLevel: Double = 0.033
-                        
-            withAnimation(.easeInOut(duration: 1.30)) { // Adjust animation duration
+                       
+            withAnimation(.easeInOut(duration: 5.00)) { // Adjust animation duration
                 position = .region(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: zoomLevel, longitudeDelta: zoomLevel)))
             }
+            
         }
     }
 }
