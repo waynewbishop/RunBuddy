@@ -29,7 +29,7 @@ struct ForecastView: View {
     @State var duration = ""
     @State var terrain = ""
     @State var country = ""
-    
+        
     let degreeSymbol: Character = "\u{00B0}"
     
     //access key from plist.
@@ -98,7 +98,7 @@ struct ForecastView: View {
                             .font(.title)
                             .foregroundColor(.gray)
                         weatherEngine.icon
-                             .font(.system(size: 35, weight: .regular))
+                            .font(.system(size: 35, weight: .regular))
                             .symbolRenderingMode(.multicolor)
                             .padding(.horizontal, 10)
                             .background(
@@ -106,7 +106,7 @@ struct ForecastView: View {
                                     .fill(Color.blue.opacity(0.1))
                             )
                         Spacer()
-                        //move presentation to the left
+                         
                     }
                     HStack {
                         Text("Fahrenheit (\(degreeSymbol)F)")
@@ -126,19 +126,28 @@ struct ForecastView: View {
                             x: .value("Hour", forecast.date, unit: .hour),
                             y: .value("Temp", forecast.temp)
                         )
-                        .foregroundStyle(Color.blue.opacity(0.4))
+                        .foregroundStyle(Color.blue.opacity(0.2))
+                        .interpolationMethod(.catmullRom)
                         
                         PointMark(
                             x: .value("Hour", forecast.date, unit: .hour),
                             y: .value("Temp", forecast.temp)
                         )
-                        .foregroundStyle(Color.blue)
+                        .foregroundStyle(Color.blue.opacity(0.6))
                         
                         AreaMark(
                             x: .value("Hour", forecast.date, unit: .hour),
-                            y: .value("Humdity", forecast.humidity)
+                            y: .value("Humidity", forecast.humidity)
                         )
-                        .foregroundStyle(Color.green.opacity(0.2))
+                        .interpolationMethod(.catmullRom) // Add this line
+                        .foregroundStyle(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue, .green]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .opacity(0.2)
+                        )
                     }
                 }
                .frame(height: 225)
@@ -164,8 +173,16 @@ struct ForecastView: View {
             }
         }
         .frame(height: 150)
-        .padding()
+        .padding(.horizontal)
         .chartYAxisLabel("Percent Precipitation")
+        
+        HStack {
+            Text("Data is based on forecasted local weather. Accuracy is not guaranteed.")
+                .font(.caption)
+                .foregroundColor(.gray.opacity(0.6))
+            Spacer()
+        }
+        .padding()
         
         Spacer()
     }
@@ -188,10 +205,6 @@ struct ForecastView: View {
         Task {
             do {
                 let forecastResponse = try await weatherEngine.fetchFiveDayForecast(for: location)
-                
-                //include times in weather forecast analysis
-                let sunrise = forecastResponse.city.sunrise.toLocalTimeString
-                let sunset = forecastResponse.city.sunset.toLocalTimeString
                                 
                 //check the location name
                 let city = forecastResponse.city.name
@@ -240,9 +253,9 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-06-28"
+    @State var targetDate = "2024-07-01"
     
     return VStack {
-        ForecastView(location: .zionPark, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")
+        ForecastView(location: .gigHarbor, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")
     }
 }

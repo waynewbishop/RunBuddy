@@ -42,11 +42,12 @@ struct SearchEngine {
     
     //associates a map point of interest with a system icon
     func imageSystemIconForCategory(_ category: MKPointOfInterestCategory?) -> String {
+        
         switch category {
         case .airport:
             return "airplane"
         case .amusementPark:
-            return "ferriswheel"
+            return "mappin"
         case .aquarium:
             return "fish"
         case .atm:
@@ -88,7 +89,7 @@ struct SearchEngine {
         case .museum:
             return "paintpalette"
         case .nationalPark:
-            return "leaf"
+            return "photo.on.rectangle.angled"
         case .park:
             return "figure.run"
         case .parking:
@@ -114,7 +115,7 @@ struct SearchEngine {
         case .zoo:
             return "paw"
         default:
-            return "mappin.and.ellipse"
+            return "mappin"
         }
     }
     

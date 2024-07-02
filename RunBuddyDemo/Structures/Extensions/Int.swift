@@ -27,8 +27,9 @@ extension Int {
         let utcDate = Date(timeIntervalSince1970: TimeInterval(self))
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "HH:mm:ss"
-        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "HH:mm"
+        formatter.timeZone = TimeZone.current //shows the time of other places in my current system timezone.
+        //formatter.timeZone = TimeZone(identifier: "Pacific/Honolulu")
        
         return formatter.string(from: utcDate)
     }

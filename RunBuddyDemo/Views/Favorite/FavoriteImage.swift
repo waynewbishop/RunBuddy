@@ -19,7 +19,7 @@ struct FavoriteImage: View {
         VStack {
             VStack {
                 Image(systemName: icon)
-                    .font(.system(size: 25, weight: .regular))
+                    .font(.system(size: 22, weight: .regular))
                     .foregroundStyle(.white)
                     .background(
                         Circle()
@@ -44,7 +44,7 @@ struct FavoriteImage: View {
 #Preview {
     
     @State var name = "Zion National Park"
-    let systemIcon = "mappin.and.ellipse"
+    let systemIcon = "mappin"
     
     return VStack {
         FavoriteImage(name: name, displayName: name, icon: systemIcon)

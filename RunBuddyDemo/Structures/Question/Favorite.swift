@@ -20,12 +20,12 @@ class Favorite: Identifiable {
     var desc: String?
     var order: Int
     
-    init(name: String = "", address: String? = "", systemIcon: String = "", desc: String? = nil) {
+    init(name: String = "", address: String? = nil, systemIcon: String = "", desc: String? = nil, order: Int = 0) {
         self.id = UUID()
         self.name = name
         self.address = address
         self.systemIcon = systemIcon
         self.desc = desc
-        self.order = 0
+        self.order = order
     }
 }

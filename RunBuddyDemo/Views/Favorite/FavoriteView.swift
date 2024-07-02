@@ -83,7 +83,7 @@ struct FavoriteRow: View {
                 HStack(spacing: 15) {
                     Image(systemName: favorite.systemIcon)
                         .frame(width: 25, alignment: .center)
-                        .font(.system(size: 20, weight: .regular))
+                        .font(.system(size: 18, weight: .regular))
                         .foregroundStyle(.white)
                         .background(
                             Circle()
