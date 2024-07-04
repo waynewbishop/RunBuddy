@@ -12,9 +12,11 @@ import CoreLocation
 struct AnalysisView: View {
     @Binding var showModal: Bool
     
-    @State private var refreshTrigger = false
     @State var question: Question
-    @State var isAnimating: Bool = true
+    @State private var refreshTrigger = false
+    
+    @State private var drivingActionSheet = false
+    @State private var showConfirmationDialog = false
     
     var targetDate: String {
         let formatter = DateFormatter()
@@ -32,19 +34,36 @@ struct AnalysisView: View {
                 .padding()
                 HStack {
                     Button(action: {
-                       refreshView()
-                    }) {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.title2)
-                    }
-                    Spacer()
-                    Button(action: {
                         showModal = false
                     }) {
                         Image(systemName: "xmark")
                             .resizable()
                             .frame(width: 16, height: 16)
                     }
+                    .padding(6)
+                    Spacer()
+                    Button(action: {
+                               // Show confirmation dialog
+                               showConfirmationDialog = true
+                           }) {
+                               Image(systemName: "ellipsis")
+                                   .font(.title2)
+                           }
+                           .confirmationDialog("Choose an action", isPresented: $showConfirmationDialog) {
+                               Button("Refresh Results") {
+                                   refreshView()
+                               }
+                               
+                               Button("Driving Directions") {
+                                   // Call sheet to invoke driving directions
+                               }
+                               
+                               Button("Share") {
+                                   // Call sheet to invoke sharing options
+                               }
+                               
+                               Button("Cancel", role: .cancel) {}
+                           }
                 }
                 .padding(.horizontal)
                           

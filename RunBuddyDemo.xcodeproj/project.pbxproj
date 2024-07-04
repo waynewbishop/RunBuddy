@@ -38,6 +38,7 @@
 		DAA87AC12C250EBD00CF11F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC02C250EBC00CF11F4 /* Color.swift */; };
 		DAA87AC52C263E2A00CF11F4 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */; };
 		DAA87AC72C2E3FF700CF11F4 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC62C2E3FF700CF11F4 /* Int.swift */; };
+		DAA87ACE2C33ABBF00CF11F4 /* NutritionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */; };
 		DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */; };
 		DAAABCA52BC71F9D00A4C09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */; };
 		DAAABCA92BC71F9D00A4C09A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA82BC71F9D00A4C09A /* Preview Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		DAA87AC02C250EBC00CF11F4 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		DAA87AC62C2E3FF700CF11F4 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionView.swift; sourceTree = "<group>"; };
 		DAAABC9D2BC71F9C00A4C09A /* RunBuddyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBuddyApp.swift; sourceTree = "<group>"; };
 		DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -236,6 +238,14 @@
 			path = Favorite;
 			sourceTree = "<group>";
 		};
+		DAA87ACC2C33ABAA00CF11F4 /* Nutrition */ = {
+			isa = PBXGroup;
+			children = (
+				DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */,
+			);
+			path = Nutrition;
+			sourceTree = "<group>";
+		};
 		DAAABC942BC71F9C00A4C09A = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +301,7 @@
 		DAAABCC02BD0979200A4C09A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DAA87ACC2C33ABAA00CF11F4 /* Nutrition */,
 				DAA87AB92C1FE9B100CF11F4 /* Favorite */,
 				DA728AB92C13BB0C0069B76B /* Analysis */,
 				DA728AB82C13BAAE0069B76B /* Question */,
@@ -449,6 +460,7 @@
 				DA5BB94D2BDBFF730010DC12 /* EllipsisView.swift in Sources */,
 				DA57DB562C0134B100FE8AD5 /* WeatherResponse.swift in Sources */,
 				DAA87AB32C1BE48900CF11F4 /* TimeRange.swift in Sources */,
+				DAA87ACE2C33ABBF00CF11F4 /* NutritionView.swift in Sources */,
 				DACF91CC2BE2F7C700A72BD0 /* SearchEngine.swift in Sources */,
 				DA1595552BE9C9DD00C02D9A /* RunView.swift in Sources */,
 			);

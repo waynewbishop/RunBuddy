@@ -19,7 +19,7 @@ extension CLLocationCoordinate2D {
 
 struct ForecastView: View {
     
-    @ObservedObject var engine = BuddyEngine()
+    @StateObject var engine = BuddyEngine()
     @StateObject var weatherEngine = WeatherEngine()
     
     @State var chartForecasts = [ChartForecast]()
@@ -81,6 +81,7 @@ struct ForecastView: View {
                         HStack {
                             Text(engine.chunkResponse)
                                 .lineLimit(nil)
+                                .font(.subheadline)
                             Spacer()
                         }
                     }
@@ -176,14 +177,15 @@ struct ForecastView: View {
         .padding(.horizontal)
         .chartYAxisLabel("Percent Precipitation")
         
-        HStack {
-            Text("Data is based on forecasted local weather. Accuracy is not guaranteed.")
-                .font(.caption)
-                .foregroundColor(.gray.opacity(0.6))
-            Spacer()
+        if chartForecasts.count > 0 {
+            HStack {
+                Text("Data is based on forecasted local weather. Accuracy is not guaranteed.")
+                    .font(.caption)
+                    .foregroundColor(.gray.opacity(0.6))
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
-        
         Spacer()
     }
     
