@@ -39,6 +39,7 @@
 		DAA87AC52C263E2A00CF11F4 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */; };
 		DAA87AC72C2E3FF700CF11F4 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AC62C2E3FF700CF11F4 /* Int.swift */; };
 		DAA87ACE2C33ABBF00CF11F4 /* NutritionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */; };
+		DAA87AD22C3A1A4A00CF11F4 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA87AD12C3A1A4A00CF11F4 /* ActivityView.swift */; };
 		DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */; };
 		DAAABCA52BC71F9D00A4C09A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */; };
 		DAAABCA92BC71F9D00A4C09A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAABCA82BC71F9D00A4C09A /* Preview Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		DAA87AC62C2E3FF700CF11F4 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionView.swift; sourceTree = "<group>"; };
+		DAA87AD12C3A1A4A00CF11F4 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		DAAABC9D2BC71F9C00A4C09A /* RunBuddyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunBuddyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAAABCA02BC71F9C00A4C09A /* RunBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBuddyApp.swift; sourceTree = "<group>"; };
 		DAAABCA42BC71F9D00A4C09A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -153,14 +155,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		DA57DB6F2C07CE2900FE8AD5 /* Weather */ = {
-			isa = PBXGroup;
-			children = (
-				DA57DB6D2C07897600FE8AD5 /* ForecastView.swift */,
-			);
-			path = Weather;
-			sourceTree = "<group>";
-		};
 		DA5BB9452BD863850010DC12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +189,8 @@
 				DA5BB94C2BDBFF730010DC12 /* EllipsisView.swift */,
 				DA1595602BEC93AA00C02D9A /* ThumbsView.swift */,
 				DA57DB572C01361500FE8AD5 /* AnalysisView.swift */,
+				DA57DB6D2C07897600FE8AD5 /* ForecastView.swift */,
+				DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -216,6 +212,7 @@
 				DA57DB552C0134B100FE8AD5 /* WeatherResponse.swift */,
 				DA3536B82BD37062009FDBB2 /* ChartForecast.swift */,
 				DA3536B62BD36FAF009FDBB2 /* Prompt.swift */,
+				DAA87AD12C3A1A4A00CF11F4 /* ActivityView.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -236,14 +233,6 @@
 				DAA87AC42C263E2A00CF11F4 /* FavoriteView.swift */,
 			);
 			path = Favorite;
-			sourceTree = "<group>";
-		};
-		DAA87ACC2C33ABAA00CF11F4 /* Nutrition */ = {
-			isa = PBXGroup;
-			children = (
-				DAA87ACD2C33ABBF00CF11F4 /* NutritionView.swift */,
-			);
-			path = Nutrition;
 			sourceTree = "<group>";
 		};
 		DAAABC942BC71F9C00A4C09A = {
@@ -301,11 +290,9 @@
 		DAAABCC02BD0979200A4C09A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DAA87ACC2C33ABAA00CF11F4 /* Nutrition */,
 				DAA87AB92C1FE9B100CF11F4 /* Favorite */,
 				DA728AB92C13BB0C0069B76B /* Analysis */,
 				DA728AB82C13BAAE0069B76B /* Question */,
-				DA57DB6F2C07CE2900FE8AD5 /* Weather */,
 				DA5BB94E2BDCBB230010DC12 /* Modifiers */,
 				DAAABCB62BCE1E7400A4C09A /* MapView.swift */,
 				DA3536B12BD32EB5009FDBB2 /* AnswerView.swift */,
@@ -439,6 +426,7 @@
 				DAAABCA12BC71F9C00A4C09A /* RunBuddyApp.swift in Sources */,
 				DA728AB72C13BA8A0069B76B /* TerrainView.swift in Sources */,
 				DAA87AC52C263E2A00CF11F4 /* FavoriteView.swift in Sources */,
+				DAA87AD22C3A1A4A00CF11F4 /* ActivityView.swift in Sources */,
 				DA6561A12C0FD98E0030076B /* String.swift in Sources */,
 				DA3536B02BD2FB9B009FDBB2 /* BuddyEngine.swift in Sources */,
 				DA3536B22BD32EB5009FDBB2 /* AnswerView.swift in Sources */,

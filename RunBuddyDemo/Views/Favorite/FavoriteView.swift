@@ -27,13 +27,10 @@ struct FavoriteView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Favorites")
-                        .font(.system(size: 25, weight: .bold))
+                    Text("Showing \(favorites.count) favorites")
+                        .font(.system(size: 20, weight: .medium))
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    EditButton()
-                }
-                ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
                         showFavorite = false
                     }) {
@@ -41,6 +38,9 @@ struct FavoriteView: View {
                             .resizable()
                             .frame(width: 16, height: 16)
                     }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
                 }
             }
         }

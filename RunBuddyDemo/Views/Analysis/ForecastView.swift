@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import MapKit
 import Charts
 
 
@@ -18,23 +19,20 @@ extension CLLocationCoordinate2D {
 
 
 struct ForecastView: View {
-    
+            
     @StateObject var engine = BuddyEngine()
     @StateObject var weatherEngine = WeatherEngine()
     
-    @State var chartForecasts = [ChartForecast]()
+    @Binding var chartForecasts: [ChartForecast]
+    
     @State var location: CLLocationCoordinate2D
     @State var targetDate = ""
     @State var name = ""
     @State var duration = ""
-    @State var terrain = ""
-    @State var country = ""
+    @State var apiKey: String?
         
     let degreeSymbol: Character = "\u{00B0}"
     
-    //access key from plist.
-    private let apiKey: String? = BuddyConfig.geminiApiKey
-
     //present date in long string format
     var headingDate: String {
         let formatter = DateFormatter()
@@ -64,9 +62,16 @@ struct ForecastView: View {
     var body: some View {
                
         VStack {
+            VStack {
+                
+            }
+            .frame(height: 20)
              VStack {
                 Text(self.name)
                      .font(.title)
+                 Text(headingDate)
+                     .font(.subheadline)
+                     .foregroundStyle(.gray.opacity(0.6))
             }
             .frame(height: 100) // set the desired VStack height
             
@@ -81,7 +86,6 @@ struct ForecastView: View {
                         HStack {
                             Text(engine.chunkResponse)
                                 .lineLimit(nil)
-                                .font(.subheadline)
                             Spacer()
                         }
                     }
@@ -191,7 +195,7 @@ struct ForecastView: View {
     
     
     //invoke engine and receive response.
-    private func askRunBuddyAndGetResponse(_ prompt: String) {
+    private func getForecastAnalysis(_ prompt: String) {
         
         Task {
             do {
@@ -208,11 +212,11 @@ struct ForecastView: View {
             do {
                 let forecastResponse = try await weatherEngine.fetchFiveDayForecast(for: location)
                                 
-                //check the location name
+                //check location name
                 let city = forecastResponse.city.name
+                
                 if self.name == "" {
                     self.name = city
-                    self.country = forecastResponse.city.country
                 }
                 
                 //process collection on the main thread
@@ -236,15 +240,12 @@ struct ForecastView: View {
                             
                             //build a new prompt for weather analysis
                             let prompt = Prompt()
-                            let revisedPrompt = prompt.weatherAnalysis(with: chartForecasts, name: name, targetDate: targetDate)
+                            let weatherPrompt = prompt.weatherAnalysis(with: chartForecasts, name: name, targetDate: targetDate)
                                                 
-                            self.askRunBuddyAndGetResponse(revisedPrompt)
+                            self.getForecastAnalysis(weatherPrompt)
                         }
                     }
-                    
-                    
-                }
-                
+                }                
             } catch {
                 print("Error: \(error)")
             }
@@ -255,9 +256,16 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-07-01"
+    @State var targetDate = "2024-07-23"
+    @State var chartForecasts = [ChartForecast]()    
+    @State var selectedDate = Date().advanceDays(by: 0)
+    @State var apiKey: String? = BuddyConfig.geminiApiKey
+    
+    @State var testQuestion = Question(name: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+
     
     return VStack {
-        ForecastView(location: .gigHarbor, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes")
+        ForecastView(chartForecasts: $chartForecasts, location: .gigHarbor, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes", apiKey: apiKey)
     }
+    
 }

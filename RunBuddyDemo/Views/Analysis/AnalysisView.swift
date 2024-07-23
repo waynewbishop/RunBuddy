@@ -7,16 +7,19 @@
 
 import SwiftUI
 import CoreLocation
-
+import MapKit
 
 struct AnalysisView: View {
     @Binding var showModal: Bool
     
     @State var question: Question
+    @State var chartForecasts = [ChartForecast]()
+   
     @State private var refreshTrigger = false
+    @State private var isSharePresented = false
+    @State private var isConfirmationPresented = false
     
-    @State private var drivingActionSheet = false
-    @State private var showConfirmationDialog = false
+    private let apiKey: String? = BuddyConfig.geminiApiKey
     
     var targetDate: String {
         let formatter = DateFormatter()
@@ -44,33 +47,42 @@ struct AnalysisView: View {
                     Spacer()
                     Button(action: {
                                // Show confirmation dialog
-                               showConfirmationDialog = true
+                               isConfirmationPresented = true
                            }) {
                                Image(systemName: "ellipsis")
                                    .font(.title2)
                            }
-                           .confirmationDialog("Choose an action", isPresented: $showConfirmationDialog) {
+                           .confirmationDialog("Choose an action", isPresented: $isConfirmationPresented) {
                                Button("Refresh Results") {
                                    refreshView()
                                }
                                
-                               Button("Driving Directions") {
-                                   // Call sheet to invoke driving directions
-                               }
-                               
                                Button("Share") {
                                    // Call sheet to invoke sharing options
+                                   isSharePresented = true
                                }
                                
                                Button("Cancel", role: .cancel) {}
                            }
+                           .sheet(isPresented: $isSharePresented, content: {
+                               ActivityView(activityItems: [
+                                   "Gig Harbor, July 7th.",
+                                   "Greate news! This morning the temperature and humidity will be ideal for a run."
+                               ])
+                           })
+
                 }
                 .padding(.horizontal)
-                          
+                
                 VStack {
                     //show weather and supporting analysis
-                    ForecastView(location: question.location, targetDate: targetDate, name: question.name, duration: question.duration)
+                    ForecastView(chartForecasts: $chartForecasts, location: question.location, targetDate: targetDate, name: question.name, duration: question.duration, apiKey: apiKey)
                 }
+                
+                VStack {
+                    NutritionView(chartForecasts: chartForecasts, question: question, apiKey: apiKey)
+                }
+                
             }
             .id(refreshTrigger)
         }
@@ -81,10 +93,6 @@ struct AnalysisView: View {
         refreshTrigger.toggle()
     }
     
-    //get driving directions for the selected location
-    private func getDirections() {
-        
-    }
 }
 
 
