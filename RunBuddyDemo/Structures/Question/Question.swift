@@ -12,11 +12,11 @@ import CoreLocation
 
 //builds out the structure for passing question parameters
 struct Question {
-    let name: String
+    let city: String
     let location: CLLocationCoordinate2D
     let duration: String
     let selectedDate: Date
-    let selectedOption: String
+    let intensity: String
     let terrainOption: String
     let nutrition: Bool
     let kit: Bool

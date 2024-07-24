@@ -11,9 +11,16 @@ struct NutritionView: View {
     
     @ObservedObject var engine = BuddyEngine()
     
-    @State var chartForecasts: [ChartForecast]
+    @Binding var chartForecasts: [ChartForecast]
     @State var question: Question
     @State var apiKey: String?
+    
+    var targetDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: question.selectedDate)
+    }
+    
     
     var body: some View {
         VStack {
@@ -33,8 +40,12 @@ struct NutritionView: View {
                 .padding(.horizontal)
             //}
         }
-        .onAppear() {
-            self.getNutritionAnalysis()
+        //the onchange event waits for changes
+        .onChange(of: chartForecasts) { oldValue, newValue in
+            if !chartForecasts.isEmpty {
+                //print("chartForecasts updated: \(chartForecasts)")
+                self.getNutritionAnalysis()
+            }
         }
         .padding(.bottom)
     }
@@ -42,12 +53,11 @@ struct NutritionView: View {
 
     //obtain the nutritional analysis
     private func getNutritionAnalysis() {
-        //build out the prompt and pass it to the AI engine.
+
+        //build out prompt
+        let prompt = Prompt()
+        let finalPrompt = prompt.promptNutrition(weather: chartForecasts, city: question.city, intensity: question.intensity, duration: question.duration)
         
-        //build a new prompt for weather analysis
-        //let prompt = Prompt()
-        //let revisedPrompt = prompt.weatherAnalysis(with: chartForecasts, name: name, targetDate: targetDate)
-                
     }
     
 }
@@ -57,13 +67,12 @@ struct NutritionView: View {
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var chartForecasts = [ChartForecast]()
     
-    @State var previewQuestion = Question(name: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
 
-    var apiKey: String? = BuddyConfig.geminiApiKey
+    let apiKey: String? = BuddyConfig.geminiApiKey
     
-
     return VStack {
-        NutritionView(chartForecasts: chartForecasts, question: previewQuestion, apiKey: apiKey)
+        NutritionView(chartForecasts: $chartForecasts, question: previewQuestion, apiKey: apiKey)
     }
     
 }

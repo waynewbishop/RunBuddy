@@ -240,7 +240,7 @@ struct ForecastView: View {
                             
                             //build a new prompt for weather analysis
                             let prompt = Prompt()
-                            let weatherPrompt = prompt.weatherAnalysis(with: chartForecasts, name: name, targetDate: targetDate)
+                            let weatherPrompt = prompt.promptForecast(weather: chartForecasts, city: name, targetDate: targetDate)
                                                 
                             self.getForecastAnalysis(weatherPrompt)
                         }
@@ -261,7 +261,7 @@ struct ForecastView: View {
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var apiKey: String? = BuddyConfig.geminiApiKey
     
-    @State var testQuestion = Question(name: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
 
     
     return VStack {

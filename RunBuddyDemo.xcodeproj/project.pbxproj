@@ -211,7 +211,6 @@
 				DA57DB702C0D5FEF00FE8AD5 /* History.swift */,
 				DA57DB552C0134B100FE8AD5 /* WeatherResponse.swift */,
 				DA3536B82BD37062009FDBB2 /* ChartForecast.swift */,
-				DA3536B62BD36FAF009FDBB2 /* Prompt.swift */,
 				DAA87AD12C3A1A4A00CF11F4 /* ActivityView.swift */,
 			);
 			path = Analysis;
@@ -280,6 +279,7 @@
 		DAAABCBF2BD091B600A4C09A /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				DA3536B62BD36FAF009FDBB2 /* Prompt.swift */,
 				DA3536AF2BD2FB9B009FDBB2 /* BuddyEngine.swift */,
 				DACF91CB2BE2F7C700A72BD0 /* SearchEngine.swift */,
 				DA57DB532BFF055B00FE8AD5 /* WeatherEngine.swift */,

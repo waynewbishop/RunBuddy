@@ -76,11 +76,11 @@ struct AnalysisView: View {
                 
                 VStack {
                     //show weather and supporting analysis
-                    ForecastView(chartForecasts: $chartForecasts, location: question.location, targetDate: targetDate, name: question.name, duration: question.duration, apiKey: apiKey)
+                    ForecastView(chartForecasts: $chartForecasts, location: question.location, targetDate: targetDate, name: question.city, duration: question.duration, apiKey: apiKey)
                 }
                 
                 VStack {
-                    NutritionView(chartForecasts: chartForecasts, question: question, apiKey: apiKey)
+                   NutritionView(chartForecasts: $chartForecasts, question: question, apiKey: apiKey)
                 }
                 
             }
@@ -90,6 +90,7 @@ struct AnalysisView: View {
     
     // toggle the refresh trigger
     private func refreshView() {
+        chartForecasts.removeAll() //needs to be reset manually since the data persists
         refreshTrigger.toggle()
     }
     
@@ -101,7 +102,7 @@ struct AnalysisView: View {
     @State var showModal: Bool  = false
     @State var selectedDate = Date().advanceDays(by: 0)
     
-    @State var testQuestion = Question(name: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), selectedOption: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
     
     return VStack {
         AnalysisView(showModal: $showModal, question: testQuestion)

@@ -11,21 +11,18 @@ import CoreLocation
 struct Prompt {
     
     //create a prompt based on weather requirements
-    func weatherAnalysis(with forecasts: [ChartForecast], name: String, targetDate: String) -> String {
+    func promptForecast(weather forecasts: [ChartForecast], city: String, targetDate: String) -> String {
         
         let finalPrompt = """
-        User: I am planning a run today. Preferably, I'd like to avoid running in extreme heat, humdity or rain. This includes avoiding running in temperatures above 80 degrees fahrenheit and humidity levels above 80%. The response should be provide a single 30 to 40 word paragraph. Assume I want to run during daylight hours. Do not provide any recommendations for clothing, hydration or nutrition. Any forecasted precipitation or humidity should be treated as a continuous function between each time interval. For example, for any two time points t1 and t2 where precipitation or humidity is forecasted, assume P(t) is continuous for all t between t1 and t2. Any references to times should be in 12-hour format not 24-hour format. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+        User: I am planning a run today. Preferably, I'd like to avoid running in extreme heat, humidity or rain. This includes avoiding running in temperatures above 80 degrees Fahrenheit and humidity levels above 80%. The response should provide a single 30 to 40 word paragraph. Assume I want to run during daylight hours. Do not provide any recommendations for clothing, hydration or nutrition. Any forecasted precipitation or humidity should be treated as a continuous function between each time interval. For example, for any two time points t1 and t2 where precipitation or humidity is forecasted, assume P(t) is continuous for all t between t1 and t2. Any references to times should be in 12-hour format not 24-hour format. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
 
-        Location: \(name)
+        Location: \(city)
 
         Planned Exercise: Outdoor running
 
         Weather Forecast Data:
-        
         \(getFlatForecast(with: forecasts))
-        
         """
-        
         //print(finalPrompt)
         
         return finalPrompt
@@ -33,23 +30,21 @@ struct Prompt {
     }
     
     //create a prompt based on nutritional requirements
-    func newNutritionPrompt(with forecasts: [ChartForecast], name: String, duration: String, intensity: String) -> String? {
+    func promptNutrition(weather forecasts: [ChartForecast], city: String, intensity: String, duration: String) -> String? {
         
         let finalPrompt = """
-         
-                 User: I am planning a \(intensity) intensity run for \(duration) minutes. Based on the weather forecast, humdity and planned training intensity, provide nutritional advice on fueling with gels during the my run. How many gels should I consume and at what time interval? Also, what foods should I consume before and after my run? Provide a single paragraph response of 150 words or less. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
-                               
-                  Location: \(name)
-                      
-                  Planned Exercise: Outdoor running
-                              
-                  Weather Forecast Data:
-         
-                 \(getFlatForecast(with: forecasts))
-         """
-        
+        User: I am planning a \(intensity) intensity run for \(duration). Based on the weather forecast, location altitude, humidity and planned training intensity, provide nutritional advice on fueling with gels during my run. How many gels should I consume and at what time interval? Also, what foods should I consume before and after my run? Please provide details as to how you are using weather data in your analysis. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+
+        Location: \(city)
+
+        Planned Exercise: Outdoor running
+
+        Weather Forecast Data:
+        \(getFlatForecast(with: forecasts))
+        """
+
         print(finalPrompt)
-        
+
         return finalPrompt
     }
     
@@ -77,17 +72,6 @@ struct Prompt {
         }
         
         return results
-    }
-    
-    
-    //create a prompt based on hydration requirements
-    func newHydrationPrompt(location: CLLocationCoordinate2D, distance: Double, targetDate: Date) -> String? {
-        return nil
-    }
-    
-    //create a prompt based on clothing requirements
-    func newClothingPrompt(location: CLLocationCoordinate2D, distance: Double, targetDate: Date) -> String? {
-        return nil
     }
         
 }
