@@ -30,10 +30,10 @@ struct Prompt {
     }
     
     //create a prompt based on nutritional requirements
-    func promptNutrition(weather forecasts: [ChartForecast], city: String, intensity: String, duration: String) -> String? {
+    func promptNutrition(weather forecasts: [ChartForecast], city: String, intensity: String, duration: String) -> String {
         
         let finalPrompt = """
-        User: I am planning a \(intensity) intensity run for \(duration). Based on the weather forecast, location altitude, humidity and planned training intensity, provide nutritional advice on fueling with gels during my run. How many gels should I consume and at what time interval? Also, what foods should I consume before and after my run? Please provide details as to how you are using weather data in your analysis. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+        User: I am planning a \(intensity.lowercased()) intensity run for \(duration) in \(city). Based on the weather forecast, humidity and planned training intensity, provide nutritional advice on fueling with gels and electrolytes during my run. How many gels should I consume and at what time interval? Also, what foods should I consume before and after my run? I am interested in correct balance of macronutrients based on my workout for optimal recovery. No gels should be recommended for runs 60 minutes or less. Also, provide recomendations on the use of electrolytes based on the heat and humidity of the day's forecast. Please provide details as to how you are using weather data in your analysis. The response should be a single 35 to 45 word paragraph. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
 
         Location: \(city)
 
@@ -43,7 +43,7 @@ struct Prompt {
         \(getFlatForecast(with: forecasts))
         """
 
-        print(finalPrompt)
+        //print(finalPrompt)
 
         return finalPrompt
     }

@@ -20,5 +20,4 @@ struct Question {
     let terrainOption: String
     let nutrition: Bool
     let kit: Bool
-    let hydration: Bool
 }

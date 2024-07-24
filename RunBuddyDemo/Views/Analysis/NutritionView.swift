@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NutritionView: View {
     
-    @ObservedObject var engine = BuddyEngine()
+    @StateObject var engine = BuddyEngine()
     
     @Binding var chartForecasts: [ChartForecast]
     @State var question: Question
@@ -24,7 +24,7 @@ struct NutritionView: View {
     
     var body: some View {
         VStack {
-           // if engine.chunkResponse != "" {
+            if engine.chunkResponse != "" {
                 VStack {
                     HStack {
                         Text("Nutrition Analysis")
@@ -38,7 +38,7 @@ struct NutritionView: View {
                     }
                 }
                 .padding(.horizontal)
-            //}
+            }
         }
         //the onchange event waits for changes
         .onChange(of: chartForecasts) { oldValue, newValue in
@@ -58,8 +58,16 @@ struct NutritionView: View {
         let prompt = Prompt()
         let finalPrompt = prompt.promptNutrition(weather: chartForecasts, city: question.city, intensity: question.intensity, duration: question.duration)
         
+        Task {
+            do {
+                try await engine.getGenerativeTextChunkAnswer(prompt: finalPrompt, apiKey: apiKey)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
-    
+        
 }
 
 #Preview {
@@ -67,7 +75,7 @@ struct NutritionView: View {
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var chartForecasts = [ChartForecast]()
     
-    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
 
     let apiKey: String? = BuddyConfig.geminiApiKey
     

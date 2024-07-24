@@ -261,8 +261,7 @@ struct ForecastView: View {
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var apiKey: String? = BuddyConfig.geminiApiKey
     
-    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
-
+    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
     
     return VStack {
         ForecastView(chartForecasts: $chartForecasts, location: .gigHarbor, targetDate: targetDate, name:"Zion National Park", duration: "30 minutes", apiKey: apiKey)

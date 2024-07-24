@@ -79,10 +79,11 @@ struct AnalysisView: View {
                     ForecastView(chartForecasts: $chartForecasts, location: question.location, targetDate: targetDate, name: question.city, duration: question.duration, apiKey: apiKey)
                 }
                 
-                VStack {
-                   NutritionView(chartForecasts: $chartForecasts, question: question, apiKey: apiKey)
+                if question.nutrition == true {
+                    VStack {
+                       NutritionView(chartForecasts: $chartForecasts, question: question, apiKey: apiKey)
+                    }
                 }
-                
             }
             .id(refreshTrigger)
         }
@@ -102,7 +103,7 @@ struct AnalysisView: View {
     @State var showModal: Bool  = false
     @State var selectedDate = Date().advanceDays(by: 0)
     
-    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false, hydration: false)
+    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "120 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: true, kit: false)
     
     return VStack {
         AnalysisView(showModal: $showModal, question: testQuestion)
