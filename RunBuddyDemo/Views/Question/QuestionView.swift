@@ -196,7 +196,7 @@ var longitude: String {
                         LabeledContent("Start Date") {
                             DatePicker("Start Date", selection: $selectedDate, displayedComponents: .date)
                                 .labelsHidden()
-                                .padding(.bottom, 15)
+                                .padding(.bottom, 20)
                         }
                         .onChange(of: selectedDate) { oldValue, newValue in
                            // print(newValue)
@@ -210,7 +210,7 @@ var longitude: String {
                         Toggle(isOn: $kit) {
                             Text("Clothing Analysis")
                         }
-                        .padding(.bottom, 15)
+                        .padding(.bottom, 20)
                     }
                 })
                 

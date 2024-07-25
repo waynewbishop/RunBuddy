@@ -103,7 +103,7 @@ struct AnalysisView: View {
     @State var showModal: Bool  = false
     @State var selectedDate = Date().advanceDays(by: 0)
     
-    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "120 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: true, kit: false)
+    @State var testQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 to 60 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Interval", terrainOption: "Road", nutrition: true, kit: false)
     
     return VStack {
         AnalysisView(showModal: $showModal, question: testQuestion)

@@ -43,4 +43,24 @@ struct ChartForecast: Identifiable, Equatable {
     
 }
 
+//sample weather data for testing
+extension ChartForecast {
+    static func generateTestData() -> [ChartForecast] {
+        let baseDate = Calendar.current.startOfDay(for: Date())
+        let timeIntervals = [2, 5, 8, 11, 14, 18, 20, 23] // Hours for 2AM, 5AM, 8AM, 11AM, 2PM, 6PM, 8PM, 11PM
+        
+        return timeIntervals.map { hour in
+            let date = Calendar.current.date(byAdding: .hour, value: hour, to: baseDate)!
+            return ChartForecast(
+                dt: Int(date.timeIntervalSince1970),
+                temp: Double.random(in: 15.0...30.0),
+                feels_like: Double.random(in: 14.0...32.0),
+                temp_min: Double.random(in: 12.0...20.0),
+                temp_max: Double.random(in: 25.0...35.0),
+                humidity: Int.random(in: 30...90),
+                pop: Double.random(in: 0.0...1.0)
+            )
+        }
+    }
+}
 

@@ -256,7 +256,7 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-07-23"
+    @State var targetDate = "2024-07-25"
     @State var chartForecasts = [ChartForecast]()    
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var apiKey: String? = BuddyConfig.geminiApiKey

@@ -24,8 +24,29 @@ struct NutritionView: View {
     
     var body: some View {
         VStack {
-            if engine.chunkResponse != "" {
+            //if engine.chunkResponse != "" {
                 VStack {
+                    HStack {
+                        Image(systemName: "figure.run")
+                            .font(.system(size: 30, weight: .regular))
+                            .foregroundStyle(.white)
+                            .background(
+                                Circle()
+                                    .fill(Color.green.opacity(0.5))
+                                    .frame(width: 55, height: 70)
+                            )
+                        Spacer()
+                               .frame(width: 80) // Adjust this value as needed
+                        Image(systemName: "signpost.right.and.left")
+                            .font(.system(size: 30, weight: .regular))
+                            .foregroundStyle(.white)
+                            .background(
+                                Circle()
+                                    .fill(Color.green.opacity(0.5))
+                                    .frame(width: 55, height: 70)
+                            )
+                    }
+                    .padding()
                     HStack {
                         Text("Nutrition Analysis")
                             .font(.headline)
@@ -38,7 +59,7 @@ struct NutritionView: View {
                     }
                 }
                 .padding(.horizontal)
-            }
+            //}
         }
         //the onchange event waits for changes
         .onChange(of: chartForecasts) { oldValue, newValue in
@@ -56,7 +77,7 @@ struct NutritionView: View {
 
         //build out prompt
         let prompt = Prompt()
-        let finalPrompt = prompt.promptNutrition(weather: chartForecasts, city: question.city, intensity: question.intensity, duration: question.duration)
+        let finalPrompt = prompt.promptNutrition(weather: chartForecasts, location: question.location, city: question.city, intensity: question.intensity, duration: question.duration)
         
         Task {
             do {
@@ -72,12 +93,11 @@ struct NutritionView: View {
 
 #Preview {
         
-    @State var selectedDate = Date().advanceDays(by: 0)
+    @State var selectedDate = Date()
     @State var chartForecasts = [ChartForecast]()
-    
-    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
-
     let apiKey: String? = BuddyConfig.geminiApiKey
+
+    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
     
     return VStack {
         NutritionView(chartForecasts: $chartForecasts, question: previewQuestion, apiKey: apiKey)
