@@ -32,10 +32,15 @@ struct Prompt {
     //create a prompt based on nutritional requirements
     func promptNutrition(weather forecasts: [ChartForecast], location: CLLocationCoordinate2D, city: String, intensity: String, duration: String) -> String {
         
-        let finalPrompt = """
-        User: I am planning a \(intensity.lowercased()) intensity run for \(duration) in \(city). Based on the weather forecast, humidity, location altitude and planned training intensity, provide nutritional advice on fueling with gels and electrolytes during my run. Assume I'll be starting my run sometime between the hours sunrise and sunset for my location. How many gels should I consume and at what time interval? The response should be a single 30 to 40 word paragraph. No gels should be recommended for runs 60 minutes or less. No fluids are needed during runs of 30 minutes or less. Provide recommendations for water and electrolytes when temperature is above 70 degrees, when humidity is above 70 percent, or when running for more than 30 minutes. Please provide details as to how you are using weather data in your analysis. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Do not provide any recommendations for the best time to run during the day. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+        /*
+         No gels should be recommended for runs 60 minutes or less. No fluids are needed during runs of 30 minutes or less. Provide recommendations for water and electrolytes when temperature is above 70 degrees, when humidity is above 70 percent, or when running for more than 30 minutes. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Any numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English. Ensure all sentences in your response have correct punctuation, spelling and grammar.
 
-        Location: \(city), (\(location.latitude), \(location.longitude))
+         */
+        
+        let finalPrompt = """
+        User: I am planning a \(intensity.lowercased()) intensity run today for \(duration) in \(city). Based on the weather forecast, temperature, location altitude and humidity, provide nutritional advice on fueling with gels or electrolytes during my run. How many gels should I consume and at what interval? Also provide pre and post-run fueling advice. The response should provide a single 30 to 40 word paragraph. Assume I'll be starting my run sometime between the hours sunrise and sunset. No fluids are needed during runs of 30 minutes or less. Provide recommendations for water and electrolytes when temperature is above 70 degrees, when humidity is above 70 percent, or when running for more than 30 minutes. Provide an analysis of how you are using the weather to provide recommendations. Do not provide any recommendations as to the best time of day to run. The general tone of the response should be upbeat, positive and encouraging. When required, only refer to yourself in first person. Do not use any titles or sub headings in the response. Do not provide any recommendations for the best time to run during the day. Numerical values provided in the response should be rounded to the nearest whole number. The response should also be in English.
+
+        Location: \(city), (coordinates: \(location.latitude), \(location.longitude))
 
         Planned Exercise: Outdoor running
 

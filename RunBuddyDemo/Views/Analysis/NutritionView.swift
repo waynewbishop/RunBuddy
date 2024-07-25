@@ -27,26 +27,24 @@ struct NutritionView: View {
             //if engine.chunkResponse != "" {
                 VStack {
                     HStack {
-                        Image(systemName: "figure.run")
-                            .font(.system(size: 30, weight: .regular))
-                            .foregroundStyle(.white)
-                            .background(
-                                Circle()
-                                    .fill(Color.green.opacity(0.5))
-                                    .frame(width: 55, height: 70)
-                            )
-                        Spacer()
-                               .frame(width: 80) // Adjust this value as needed
-                        Image(systemName: "signpost.right.and.left")
-                            .font(.system(size: 30, weight: .regular))
-                            .foregroundStyle(.white)
-                            .background(
-                                Circle()
-                                    .fill(Color.green.opacity(0.5))
-                                    .frame(width: 55, height: 70)
-                            )
+                        VStack {
+                            Image(systemName: "figure.run")
+                                .font(.system(size: 30, weight: .regular))
+                                .foregroundStyle(.white)
+                                .background(
+                                    Circle()
+                                        .fill(Color.orange.opacity(0.7))
+                                        .frame(width: 55, height: 70)
+                                )
+                                .frame(height: 55)
+                            Text("Duration: \(question.duration)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                               // .fontWeight(.bold)
+                        }
+                       
                     }
-                    .padding()
+                    .frame(height: 120)
                     HStack {
                         Text("Nutrition Analysis")
                             .font(.headline)
@@ -61,6 +59,14 @@ struct NutritionView: View {
                 .padding(.horizontal)
             //}
         }
+        
+        /*
+        //for testing..
+        .onAppear(perform: {
+            self.getNutritionAnalysis()
+        })
+         */
+        
         //the onchange event waits for changes
         .onChange(of: chartForecasts) { oldValue, newValue in
             if !chartForecasts.isEmpty {
@@ -94,10 +100,10 @@ struct NutritionView: View {
 #Preview {
         
     @State var selectedDate = Date()
-    @State var chartForecasts = [ChartForecast]()
+    @State var chartForecasts = ChartForecast.generateTestData()
     let apiKey: String? = BuddyConfig.geminiApiKey
 
-    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "30 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
+    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "90-120 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
     
     return VStack {
         NutritionView(chartForecasts: $chartForecasts, question: previewQuestion, apiKey: apiKey)
