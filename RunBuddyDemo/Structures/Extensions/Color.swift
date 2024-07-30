@@ -15,4 +15,9 @@ extension Color {
         Color.blue
             .opacity(0.5)
     }
+    
+    static func random() -> Color {
+        let colors: [Color] = [.green, .blue, .orange, .gray]
+        return colors.randomElement() ?? .black
+    }
 }

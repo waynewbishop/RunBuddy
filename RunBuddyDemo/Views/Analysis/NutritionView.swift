@@ -24,16 +24,16 @@ struct NutritionView: View {
     
     var body: some View {
         VStack {
-            //if engine.chunkResponse != "" {
+            if engine.chunkResponse != "" {
                 VStack {
                     HStack {
                         VStack {
-                            Image(systemName: "figure.run")
+                            Image(systemName: "waterbottle")
                                 .font(.system(size: 30, weight: .regular))
                                 .foregroundStyle(.white)
                                 .background(
                                     Circle()
-                                        .fill(Color.orange.opacity(0.7))
+                                        .fill(Color.gray.opacity(0.7))
                                         .frame(width: 55, height: 70)
                                 )
                                 .frame(height: 55)
@@ -55,17 +55,17 @@ struct NutritionView: View {
                             .lineLimit(nil)
                         Spacer()
                     }
+                    Spacer().frame(height: 10) // Adjust the height as needed
+                    HStack {
+                        Text("Recommendations obtained from the running community and should not be considered medical advice.")
+                            .font(.caption)
+                            .foregroundStyle(.gray).opacity(0.6)
+                        Spacer()
+                    }
                 }
                 .padding(.horizontal)
-            //}
+            }
         }
-        
-        /*
-        //for testing..
-        .onAppear(perform: {
-            self.getNutritionAnalysis()
-        })
-         */
         
         //the onchange event waits for changes
         .onChange(of: chartForecasts) { oldValue, newValue in
@@ -75,6 +75,14 @@ struct NutritionView: View {
             }
         }
         .padding(.bottom)
+       
+        /* for testing only
+        .onAppear(perform: {
+            #error("Error: onAppear section should not be compiled. Comment it out before building.")
+            self.getNutritionAnalysis()
+        })
+        */
+               
     }
    
 
@@ -103,7 +111,7 @@ struct NutritionView: View {
     @State var chartForecasts = ChartForecast.generateTestData()
     let apiKey: String? = BuddyConfig.geminiApiKey
 
-    @State var previewQuestion = Question(city: "Gig Harbor", location: .gigHarbor, duration: "90-120 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Easy", terrainOption: "Road", nutrition: false, kit: false)
+    @State var previewQuestion = Question(city: "Zion Park", location: .bouldersCreekPath, duration: "30-60 minutes", selectedDate: selectedDate.advanceDays(by: 1), intensity: "Threshold", terrainOption: "Road", nutrition: false, kit: false)
     
     return VStack {
         NutritionView(chartForecasts: $chartForecasts, question: previewQuestion, apiKey: apiKey)

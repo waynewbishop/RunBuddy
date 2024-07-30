@@ -79,14 +79,10 @@ var longitude: String {
                           self.showSavedAlert = true
                         }
                         
-                        
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(10)
-                            .background(Circle().fill(Color.yellow))
-                            
+                            .font(.title)
+                            .foregroundColor(Color.gray.opacity(0.65))
                     }
                     .alert(isPresented: $showSavedAlert) {
                         Alert(
@@ -148,7 +144,7 @@ var longitude: String {
                     GroupBox {
                         HStack {
                             ScrollView(.horizontal) {
-                                HStack(spacing: 16) {
+                                HStack(spacing: 25) {
                                     ForEach(favorites, id: \.name) { favorite in
                                         Button(action: {
                                             // Action to perform when the button is tapped

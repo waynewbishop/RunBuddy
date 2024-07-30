@@ -15,6 +15,11 @@ import Charts
 extension CLLocationCoordinate2D {
     static let gigHarbor = CLLocationCoordinate2D(latitude: 47.64373, longitude: -122.17364)
     static let zionPark = CLLocationCoordinate2D(latitude: 37.1047193, longitude: -113.7286516)
+    static let chautauquaTrail = CLLocationCoordinate2D(latitude: 39.9988, longitude: -105.2862)
+    static let mesaTrail = CLLocationCoordinate2D(latitude: 39.9947, longitude: -105.2868)
+    static let sanitasTrail = CLLocationCoordinate2D(latitude: 40.0341, longitude: -105.3017)
+    static let bouldersCreekPath = CLLocationCoordinate2D(latitude: 40.0138, longitude: -105.2919)
+    static let flagstaffTrail = CLLocationCoordinate2D(latitude: 40.0024, longitude: -105.2938)
 }
 
 
@@ -256,8 +261,8 @@ struct ForecastView: View {
 #Preview {
 
     //provide test data..
-    @State var targetDate = "2024-07-25"
-    @State var chartForecasts = [ChartForecast]()    
+    @State var targetDate = "2024-08-01"
+    @State var chartForecasts = [ChartForecast]()
     @State var selectedDate = Date().advanceDays(by: 0)
     @State var apiKey: String? = BuddyConfig.geminiApiKey
     

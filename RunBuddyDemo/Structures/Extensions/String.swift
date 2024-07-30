@@ -22,7 +22,9 @@ extension String {
         return formatter.string(from: date)
     }
     
-    func truncated(maxLength: Int = 15) -> String {
+    
+    //returns a truncated string, depending on the length
+    func truncated(maxLength: Int = 10) -> String {
        if count <= maxLength {
            return self
        } else {

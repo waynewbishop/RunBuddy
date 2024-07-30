@@ -19,12 +19,12 @@ struct FavoriteImage: View {
         VStack {
             VStack {
                 Image(systemName: icon)
-                    .font(.system(size: 22, weight: .regular))
+                    .font(.system(size: 25, weight: .regular))
                     .foregroundStyle(.white)
                     .background(
                         Circle()
                             .fill(Color.buttonColor.opacity(1.0))
-                            .frame(width: 45, height: 45)
+                            .frame(width: 50, height: 50)
                     )
             }
             .frame(height: 50)
@@ -38,7 +38,6 @@ struct FavoriteImage: View {
             }
         }
     }
-                
 }
 
 #Preview {
